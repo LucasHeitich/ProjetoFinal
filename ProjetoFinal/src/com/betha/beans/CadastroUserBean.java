@@ -35,7 +35,7 @@ public class CadastroUserBean {
 		UserDao ud = new UserDao();
 		
 		//ud.insert(this.user);
-		
+		Repositorios.getUsuarios().insert(this.user);
 		
 		//System.out.println(this.user.getHobbies().get(1));
 		this.cadastro=true;
