@@ -8,7 +8,7 @@ import java.util.List;
 import com.betha.cadastro.Endereco;
 
 /**
- * @author Leandro zilli
+ * @author Leandro zilli.
  *
  */
 public interface EnderecoRepo {
