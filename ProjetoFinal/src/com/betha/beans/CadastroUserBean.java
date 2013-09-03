@@ -5,12 +5,16 @@ import java.util.List;
 
 
 import com.betha.cadastro.Usuario;
-import com.betha.model.UserDao;
+
 import com.betha.util.Repositorios;
 
 /**
  * @author Administrador
+<<<<<<< HEAD
+ *
+=======
  *gfffgt
+>>>>>>> refs/remotes/origin/master
  */
 public class CadastroUserBean {
 	
@@ -32,9 +36,15 @@ public class CadastroUserBean {
 	public void cadastrar(){
 		this.userList.add(this.user);
 		
-		UserDao ud = new UserDao();
+		//UserDao ud = new UserDao();
 		
+<<<<<<< HEAD
+		//ud.insert(this.user);
+		Repositorios.getUsuarios().insert(this.user); //inserindo o usuário e seu endereço no banco!
+		
+=======
 		ud.insert(this.user);
+>>>>>>> refs/remotes/origin/master
 		//System.out.println(this.user.getHobbies().get(1));
 		this.cadastro=true;
 		
@@ -49,8 +59,8 @@ public class CadastroUserBean {
 	
 	public void excluir(){
 		this.userList.remove(this.userSelected);
-		UserDao ud = new UserDao();
-		ud.delete(ud.selectOne(this.userSelected));
+		//UserDao ud = new UserDao();
+		//ud.delete(ud.selectOne(this.userSelected));
 		this.cadastro=false;
 	}
 

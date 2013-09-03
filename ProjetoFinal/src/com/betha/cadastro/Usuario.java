@@ -24,7 +24,7 @@ public class Usuario {
 	private Endereco endereco;
 	//private boolean forasteiro;
 	//private String vertical;
-	private boolean selecionado;
+	public boolean selecionado;
 	//private ArrayList<String> hobbies = new ArrayList<String>();
 	
 	public String getEmail() {
@@ -58,12 +58,13 @@ public class Usuario {
 	public void setVertical(String vertical) {
 		this.vertical = vertical;
 	}*/
+	/*
 	public boolean isSelecionado() {
 		return selecionado;
 	}
 	public void setSelecionado(boolean selecionado) {
 		this.selecionado = selecionado;
-	}
+	}*/
 	/*
 	public ArrayList<String> getHobbies() {
 		return hobbies;
@@ -98,7 +99,7 @@ public class Usuario {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name="endereco") //fk
 	public Endereco getEndereco() {
 		return endereco;

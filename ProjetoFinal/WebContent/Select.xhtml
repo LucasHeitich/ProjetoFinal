@@ -51,18 +51,18 @@
 				<!-- Barra de Pesquisa -->
 				<h:outputLabel for="busca_texto" title="Pesquise por Nome/E-mail/Código"  value="Pesquisar:"/> 
 				
-				<h:inputText  id="busca_texto" styleClass="busca_texto" value="#{tabelaBean.filtro}">
-<!-- Ajax da Pesquisa --> <f:ajax event="keyup" listener="#{tabelaBean.buscarFiltro}" render="tabela"/>
+				<h:inputText  id="busca_texto" styleClass="busca_texto" value="#{relatorioBean.filtro}">
+<!-- Ajax da Pesquisa --> <f:ajax event="keyup" listener="#{relatorioBean.buscarFiltro}" render="tabela"/>
 				</h:inputText>	
 			</h:panelGrid>
 		</div>
 		<!-- Criação da Tabela -->
-			<h:dataTable class="tabela" id="tabela" value="#{not empty tabelaBean.filtro ? tabelaBean.usuarioFiltrado : tabelaBean.listaUsuario}" var="item"
-			rendered="#{not empty tabelaBean.listaUsuario}">
+			<h:dataTable class="tabela" id="tabela" value="#{not empty relatorioBean.filtro ? relatorioBean.usuarioFiltrado : relatorioBean.listaUsuario}" var="item"
+			rendered="#{not empty relatorioBean.listaUsuario}">
 				<h:column headerClass="check-column">
 					<f:facet name="header">
-						<h:selectBooleanCheckbox style="margin-left:-45px;" id="checkAll" value="#{tabelaBean.itemSelecionado}">
-							<f:ajax event="click" listener="#{tabelaBean.marcaTodos}" render="tabela"/>
+						<h:selectBooleanCheckbox style="margin-left:-45px;" id="checkAll" value="#{relatorioBean.itemSelecionado}">
+							<f:ajax event="click" listener="#{relatorioBean.marcaTodos}" render="tabela"/>
 						</h:selectBooleanCheckbox>
 					</f:facet>
 					<h:selectBooleanCheckbox  value="#{item.selecionado}"/>
@@ -70,10 +70,10 @@
 			
 			<h:column headerClass="check-column">
 				<f:facet name="header">Código
-					<h:commandButton rendered="tabela" actionListener="#{tabelaBean.sort}" image="#{tabelaBean.asc ? 'imagens/asc.gif' : (tabelaBean.sorted ? 'imagens/desc.gif' : 'imagens/sort.gif')  }">
+					<h:commandButton rendered="tabela" actionListener="#{relatorioBean.sort}" image="#{relatorioBean.asc ? 'imagens/asc.gif' : (relatorioBean.sorted ? 'imagens/desc.gif' : 'imagens/sort.gif')  }">
 					
-					<f:ajax  event="click" listener="#{tabelaBean.sort}" render="tabela">
-						<f:setPropertyActionListener target="#{tabelaBean.teste}" value="Teste"/>
+					<f:ajax  event="click" listener="#{relatorioBean.sort}" render="tabela">
+						<f:setPropertyActionListener target="#{relatorioBean.teste}" value="Teste"/>
 					</f:ajax>
 					
 					</h:commandButton>
@@ -84,8 +84,8 @@
 			</h:column>
 			<h:column headerClass="check-column">
 				<f:facet name="header">Nome
-					<h:commandButton image="#{tabelaBean.asc ? 'imagens/asc.gif' : (tabelaBean.sorted ? 'imagens/desc.gif' : 'imagens/sort.gif')  }">
-						<f:ajax event="click" listener="#{tabelaBean.sort}" render="tabela">
+					<h:commandButton image="#{relatorioBean.asc ? 'imagens/asc.gif' : (relatorioBean.sorted ? 'imagens/desc.gif' : 'imagens/sort.gif')  }">
+						<f:ajax event="click" listener="#{relatorioBean.sort}" render="tabela">
 						 </f:ajax>
 						 <f:ajax ></f:ajax>
 					</h:commandButton>
@@ -111,18 +111,18 @@
 			</h:column>
 			</h:dataTable>
 			<!-- Botão anterior -->
-			<h:commandButton value="Anterior" disabled="#{tabelaBean.anterior}" id="anterior">
-				<f:ajax execute="anterior" event="click" listener="#{tabelaBean.back}" render="tabela anterior proximo"/>
+			<h:commandButton value="Anterior" disabled="#{relatorioBean.anterior}" id="anterior">
+				<f:ajax execute="anterior" event="click" listener="#{relatorioBean.back}" render="tabela anterior proximo"/>
 			</h:commandButton>
 			<!-- Ir até a página Campo -->
 			<h:outputLabel styleClass="pag-label" for="pagina-texto" value="Ir até a pág.:"/>
-			<h:inputText styleClass="pag-text" maxlength="5" id="pagina-texto" value="#{tabelaBean.paginaFiltro}">
-				<f:ajax event="keyup" listener="#{tabelaBean.irPagina}" render="tabela anterior proximo"></f:ajax>
+			<h:inputText styleClass="pag-text" maxlength="5" id="pagina-texto" value="#{relatorioBean.paginaFiltro}">
+				<f:ajax event="keyup" listener="#{relatorioBean.irPagina}" render="tabela anterior proximo"></f:ajax>
 			</h:inputText>
 			<!-- Botão próximo -->
-			<h:commandButton value="Próximo"  disabled="#{tabelaBean.proximo}"
+			<h:commandButton value="Próximo"  disabled="#{relatorioBean.proximo}"
 			 id="proximo" styleClass="botao-proximo" >
-				<f:ajax execute="proximo" event="click" listener="#{tabelaBean.next}" render="tabela proximo anterior"/>
+				<f:ajax execute="proximo" event="click" listener="#{relatorioBean.next}" render="tabela proximo anterior"/>
 			</h:commandButton>
 			
 			

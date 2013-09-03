@@ -26,8 +26,8 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>tabelaBean</managed-bean-name>
-		<managed-bean-class>com.betha.beans.TabelaBean</managed-bean-class>
+		<managed-bean-name>relatorioBean</managed-bean-name>
+		<managed-bean-class>com.betha.beans.RelatorioBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>

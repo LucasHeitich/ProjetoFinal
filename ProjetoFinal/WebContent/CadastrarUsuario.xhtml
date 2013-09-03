@@ -10,7 +10,7 @@
 					<h:panelGrid columns="1">
 				
 						<h:outputLabel value="Nome:" for="texto_nome" />
-						<h:inputText maxlength="32" label="Campo Nome" value="#{cadUser.user.nome}" id="texto_nome" required="true"
+						<h:inputText maxlength="45" label="Campo Nome" value="#{cadUser.user.nome}" id="texto_nome" required="true"
 						requiredMessage="Preenchimento do nome é obrigatório!"/>
 						<h:message for="texto_nome" errorClass="erro"/>
 						
@@ -22,19 +22,25 @@
 							<f:selectItem itemValue="F" itemLabel="Feminino"/>
 						</h:selectOneRadio>
 						<h:message for="sexo" errorClass="erro"/>
-						<!-- BooleanCheckBox -->
-						<h:outputLabel value="Forasteiro:"/> 
-						 <h:selectBooleanCheckbox id="foreign" value="#{cadUser.user.forasteiro}"/>
 						
+						<!-- BooleanCheckBox -->
+						
+						<!-- <h:outputLabel value="Forasteiro:"/> 
+						 <h:selectBooleanCheckbox id="foreign" value="#{cadUser.user.forasteiro}"/>
+						 -->
 						
 						<!-- CheckBox -->
+						
+						<!-- 
 						<h:outputLabel value="Hobbies:"/>
 						<h:selectManyCheckbox value="#{cadUser.user.hobbies}">
 							<f:selectItem itemValue="Esportes" itemLabel="Futebol"/>
 							<f:selectItem itemValue="Games" itemLabel="Videogame"/>
 							<f:selectItem itemValue="Cinema" itemLabel="Cinema"/>
 						</h:selectManyCheckbox>
+						-->
 						<!-- SelectOneMenu (Lista ComboBox) -->
+						<!-- 
 						<h:outputLabel value="Vertical:"/>
 						<h:selectOneMenu value="#{cadUser.user.vertical}">
 							<f:selectItem itemValue="none" itemLabel="-----"/>
@@ -42,12 +48,18 @@
 							<f:selectItem itemValue="Pessoal" itemLabel="V. Pessoal"/>
 							<f:selectItem itemValue="Contábil" itemLabel="V. Contábil"/>
 						</h:selectOneMenu>
-						
+						 -->
 						
 						<h:outputLabel value="Email:" for="email" />
-						<h:inputText maxlength="50" label="Campo Email" value="#{cadUser.user.email}" id="email" required="true" 
+						<h:inputText maxlength="45" label="Campo Email" value="#{cadUser.user.email}" id="email" required="true" 
 						requiredMessage="Preenchimento do E-mail é obrigatório! "/>
 						<h:message for="email" errorClass="erro"/>
+						
+						<h:outputLabel value="Endereço:" for="endereco" />
+						<h:inputText maxlength="60" label="Campo Email" value="#{cadUser.user.endereco.descricao}" id="endereco" required="true" 
+						requiredMessage="Preenchimento do Endereço é obrigatório! "/>
+						<h:message for="endereco" errorClass="erro"/>
+						
 						
 						<h:outputLabel value="Senha:" for="senha"/>
 						<h:inputSecret maxlength="10" label="Campo Senha" value="#{cadUser.user.senha}" id="senha" required="true" 
