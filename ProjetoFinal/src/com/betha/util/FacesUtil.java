@@ -11,7 +11,5 @@ public class FacesUtil {
 		ExternalContext externalContext = facesContext.getExternalContext(); 
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest(); 
 		return request.getAttribute(name); 
-		
-		
 	}
 }
