@@ -8,7 +8,7 @@ import com.betha.model.UserDao;
 
 /**
  * @author Administrador
- *
+ *gfffgt
  */
 public class CadastroUserBean {
 	
