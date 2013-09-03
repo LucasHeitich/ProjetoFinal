@@ -1,0 +1,136 @@
+<ui:composition template="/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="conteudo">
+	
+	<script type="text/javascript">
+	function deletar(){
+		
+		if (window.confirm("Tem certeza que deseja deletar este usuário?")){
+			alert("Em fase de Teste! :-)");
+			
+			
+		}
+	}
+	
+	</script>
+	<!--  
+		<div>
+			<fieldset style="width:1px;">
+				<legend>Lista</legend>
+					<ol>
+						<h:form>
+							<ui:repeat var="user" value="#{cadUser.userList}">
+								<table border="1" class="tabelaRepeat">
+									<tr style="width:100px;">
+										<th>Código</th>
+										<th>Nome</th>
+										<th>Email</th>
+									</tr>
+									<tr>
+										<td>#{user.id}</td>
+										<td>#{user.nome}</td>
+										<td>#{user.email}</td>
+									</tr>
+								</table>
+							</ui:repeat>
+						</h:form>
+					</ol>
+			</fieldset>
+		</div>
+	
+	-->
+	<div class="container" style="margin-top:30px;">
+	<f:ajax event="load" onevent="document.getElementById('formulario:busca_texto').focus()"/>
+		<h:form id="formulario" >
+		
+		<div class="barra-de-pesquisa" >
+			<h:panelGrid class="tabela">
+				<!-- Barra de Pesquisa -->
+				<h:outputLabel for="busca_texto" title="Pesquise por Nome/E-mail/Código"  value="Pesquisar:"/> 
+				
+				<h:inputText  id="busca_texto" styleClass="busca_texto" value="#{tabelaBean.filtro}">
+<!-- Ajax da Pesquisa --> <f:ajax event="keyup" listener="#{tabelaBean.buscarFiltro}" render="tabela"/>
+				</h:inputText>	
+			</h:panelGrid>
+		</div>
+		<!-- Criação da Tabela -->
+			<h:dataTable class="tabela" id="tabela" value="#{not empty tabelaBean.filtro ? tabelaBean.usuarioFiltrado : tabelaBean.listaUsuario}" var="item"
+			rendered="#{not empty tabelaBean.listaUsuario}">
+				<h:column headerClass="check-column">
+					<f:facet name="header">
+						<h:selectBooleanCheckbox style="margin-left:-45px;" id="checkAll" value="#{tabelaBean.itemSelecionado}">
+							<f:ajax event="click" listener="#{tabelaBean.marcaTodos}" render="tabela"/>
+						</h:selectBooleanCheckbox>
+					</f:facet>
+					<h:selectBooleanCheckbox  value="#{item.selecionado}"/>
+				</h:column>
+			
+			<h:column headerClass="check-column">
+				<f:facet name="header">Código
+					<h:commandButton rendered="tabela" actionListener="#{tabelaBean.sort}" image="#{tabelaBean.asc ? 'imagens/asc.gif' : (tabelaBean.sorted ? 'imagens/desc.gif' : 'imagens/sort.gif')  }">
+					
+					<f:ajax  event="click" listener="#{tabelaBean.sort}" render="tabela">
+						<f:setPropertyActionListener target="#{tabelaBean.teste}" value="Teste"/>
+					</f:ajax>
+					
+					</h:commandButton>
+				
+				</f:facet>
+				
+				<h:outputText value="#{item.id}"/>
+			</h:column>
+			<h:column headerClass="check-column">
+				<f:facet name="header">Nome
+					<h:commandButton image="#{tabelaBean.asc ? 'imagens/asc.gif' : (tabelaBean.sorted ? 'imagens/desc.gif' : 'imagens/sort.gif')  }">
+						<f:ajax event="click" listener="#{tabelaBean.sort}" render="tabela">
+						 </f:ajax>
+						 <f:ajax ></f:ajax>
+					</h:commandButton>
+				
+				</f:facet>
+				<h:outputText value="#{item.nome}"/>
+			</h:column>
+			<h:column headerClass="check-column">
+				<f:facet name="header">Email</f:facet>
+				<h:outputText value="#{item.email}"/>
+			</h:column>
+			
+			<!-- Opção editar -->
+			<h:column headerClass="check-column">
+				<h:commandLink title="Editar Usuário"><h:graphicImage value="/imagens/updateIcon.jpg"/></h:commandLink> 
+			</h:column>
+			<!-- Opção deletar -->
+			<h:column headerClass="check-column">
+				<h:commandLink  title="Deletar Usuário">
+					<h:graphicImage value="/imagens/deleteIcon.png"/>
+					<f:ajax event="click" onevent="#{window.confirm('Tem certeza que deseja deletar este usuário?')}" />
+				</h:commandLink> 
+			</h:column>
+			</h:dataTable>
+			<!-- Botão anterior -->
+			<h:commandButton value="Anterior" disabled="#{tabelaBean.anterior}" id="anterior">
+				<f:ajax execute="anterior" event="click" listener="#{tabelaBean.back}" render="tabela anterior proximo"/>
+			</h:commandButton>
+			<!-- Ir até a página Campo -->
+			<h:outputLabel styleClass="pag-label" for="pagina-texto" value="Ir até a pág.:"/>
+			<h:inputText styleClass="pag-text" maxlength="5" id="pagina-texto" value="#{tabelaBean.paginaFiltro}">
+				<f:ajax event="keyup" listener="#{tabelaBean.irPagina}" render="tabela anterior proximo"></f:ajax>
+			</h:inputText>
+			<!-- Botão próximo -->
+			<h:commandButton value="Próximo"  disabled="#{tabelaBean.proximo}"
+			 id="proximo" styleClass="botao-proximo" >
+				<f:ajax execute="proximo" event="click" listener="#{tabelaBean.next}" render="tabela proximo anterior"/>
+			</h:commandButton>
+			
+			
+			
+		
+			
+			
+		</h:form>
+	</div>
+	</ui:define>
+</ui:composition>

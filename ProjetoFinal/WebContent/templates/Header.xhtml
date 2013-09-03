@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:form>
+	 <h1>
+		 <h:commandLink value="Web Project" action="#{redirecionarPagina.redirecionar}" styleClass="tituloBanner">
+			
+			 <f:setPropertyActionListener target="#{redirecionarPagina.local}" value="Inicio"></f:setPropertyActionListener>
+		
+		 </h:commandLink>
+	 </h1>
+ </h:form>
+ 
+	<div class="container">
+		
+		<h:form>
+			<h:commandLink value="Início" styleClass="bannerLink"
+				action="#{redirecionarPagina.redirecionar}">
+				<f:setPropertyActionListener target="#{redirecionarPagina.local}"
+					value="Inicio" />
+			</h:commandLink>
+			
+			<h:commandLink value="Cadastrar" styleClass="bannerLink"
+				action="#{redirecionarPagina.redirecionar}">
+				<f:setPropertyActionListener target="#{redirecionarPagina.local}"
+					value="CadastrarUsuario"></f:setPropertyActionListener>
+			</h:commandLink>
+			
+		
+			
+			<h:commandLink value="Lista"  styleClass="bannerLink"
+				action="#{redirecionarPagina.redirecionar}" actionListener="#{tabelaBean.listar}">
+				<f:setPropertyActionListener target="#{redirecionarPagina.local}"
+					value="Select"></f:setPropertyActionListener>
+			</h:commandLink>
+
+		</h:form>
+	</div>
+
+
+</ui:composition>

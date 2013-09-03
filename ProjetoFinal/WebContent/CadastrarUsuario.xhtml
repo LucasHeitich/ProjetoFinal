@@ -1,0 +1,69 @@
+<ui:composition template="/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<fieldset id="field">
+					<legend>Formulário</legend>
+					<h:panelGrid columns="1">
+				
+						<h:outputLabel value="Nome:" for="texto_nome" />
+						<h:inputText maxlength="32" label="Campo Nome" value="#{cadUser.user.nome}" id="texto_nome" required="true"
+						requiredMessage="Preenchimento do nome é obrigatório!"/>
+						<h:message for="texto_nome" errorClass="erro"/>
+						
+						<h:outputLabel value="Sexo:"/>
+						<!-- RadioButton -->
+						<h:selectOneRadio label="Campo Sexo" id="sexo" value="#{cadUser.user.sexo}" layout="pageDirection" required="true"
+						requiredMessage="Preenchimento do sexo é obrigatório!">
+							<f:selectItem itemValue="M" itemLabel="Masculino"/>
+							<f:selectItem itemValue="F" itemLabel="Feminino"/>
+						</h:selectOneRadio>
+						<h:message for="sexo" errorClass="erro"/>
+						<!-- BooleanCheckBox -->
+						<h:outputLabel value="Forasteiro:"/> 
+						 <h:selectBooleanCheckbox id="foreign" value="#{cadUser.user.forasteiro}"/>
+						
+						
+						<!-- CheckBox -->
+						<h:outputLabel value="Hobbies:"/>
+						<h:selectManyCheckbox value="#{cadUser.user.hobbies}">
+							<f:selectItem itemValue="Esportes" itemLabel="Futebol"/>
+							<f:selectItem itemValue="Games" itemLabel="Videogame"/>
+							<f:selectItem itemValue="Cinema" itemLabel="Cinema"/>
+						</h:selectManyCheckbox>
+						<!-- SelectOneMenu (Lista ComboBox) -->
+						<h:outputLabel value="Vertical:"/>
+						<h:selectOneMenu value="#{cadUser.user.vertical}">
+							<f:selectItem itemValue="none" itemLabel="-----"/>
+							<f:selectItem itemValue="Saúde" itemLabel="V. Saúde"/>
+							<f:selectItem itemValue="Pessoal" itemLabel="V. Pessoal"/>
+							<f:selectItem itemValue="Contábil" itemLabel="V. Contábil"/>
+						</h:selectOneMenu>
+						
+						
+						<h:outputLabel value="Email:" for="email" />
+						<h:inputText maxlength="50" label="Campo Email" value="#{cadUser.user.email}" id="email" required="true" 
+						requiredMessage="Preenchimento do E-mail é obrigatório! "/>
+						<h:message for="email" errorClass="erro"/>
+						
+						<h:outputLabel value="Senha:" for="senha"/>
+						<h:inputSecret maxlength="10" label="Campo Senha" value="#{cadUser.user.senha}" id="senha" required="true" 
+						requiredMessage="Preenchimento da Senha é obrigatório!"/>
+						<h:message for="senha" errorClass="erro"/>
+						
+						<h:commandButton value="Cadastrar" action="#{cadUser.cadastrar}"/>
+						
+						<h:commandButton type="reset" value="Limpar"/>
+						
+						<h:commandButton value="Outro ActionEvent" action="#{cadUser.botaoClicado}">
+							<f:actionListener binding="#{actionUmBean}"/>
+						</h:commandButton>
+						
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>

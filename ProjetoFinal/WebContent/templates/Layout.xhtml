@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<h:outputStylesheet library="CSS/" name="Estilos.css" />
+<title>Web Project Copyright</title>
+</h:head>
+<h:body>
+	<div class="header">
+		<ui:insert name="cabecalho">
+			<ui:include src="/templates/Header.xhtml"/>
+				
+			</ui:insert>
+	</div>
+	
+	<div class="content">
+			<ui:insert name="conteudo"></ui:insert>
+		
+	</div>
+	
+	<div class="footer">
+		<ui:insert name="rodape">
+			<ui:include src="/templates/Footer.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+</h:body>
+</html>

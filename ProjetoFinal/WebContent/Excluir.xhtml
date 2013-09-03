@@ -1,0 +1,29 @@
+<ui:composition template="/templates/Layout.xhtml"
+ xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	
+	<ui:define name="conteudo">
+		<ol>
+			<h:form>
+			
+				<ui:repeat var="user" value="#{cadUser.userList}">
+					<li>
+					#{user.nome} - #{user.email}
+					<h:commandButton value="Excluir" action="#{cadUser.excluir}"> 
+						<!-- Aqui é um ActionListener do botão
+							O target é o atributo em que o objeto value será atribuído.
+							Um tipo de target=value;
+							No caso, meu userSelected recebe o #{user} que está passando na lista e que será enviado ao método excluir			
+						 -->
+						<f:setPropertyActionListener target="#{cadUser.userSelected}" value="#{user}"></f:setPropertyActionListener>
+						
+					</h:commandButton>
+					</li>
+				</ui:repeat>
+			</h:form>
+		</ol>
+	</ui:define>
+</ui:composition>

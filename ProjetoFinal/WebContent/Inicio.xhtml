@@ -1,0 +1,67 @@
+<ui:composition template="/templates/Layout.xhtml"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="conteudo">
+		<div class="content">
+			<h1 align="center"> Bem Vindo ao 
+				<span style="color:#DEDEDE;">Web Project! </span>
+			</h1>
+			
+			<h:form>
+				<fieldset>
+					
+				<h:panelGrid>
+						<!-- Salário -->
+						<h:outputLabel value="Salário:" for="salario-texto"/>
+						<h:inputText id="salario-texto" required="true" requiredMessage="Preenchimento do Salário é obrigatório!">
+							<f:convertNumber integerOnly="true" />
+						</h:inputText>
+						<h:message for="salario-texto" errorClass="erro"/>
+						<!-- Data Admissão -->
+						<h:outputLabel value="Data de Admissão:" for="dataA-texto"/>
+						<h:inputText id="dataA-texto" required="true" requiredMessage="Preenchimento da Data de Admissão é obrigatório!">
+							<f:convertNumber integerOnly="true" />
+						</h:inputText>
+						<h:message for="dataA-texto" errorClass="erro"/>
+						<!-- Data Demissão -->
+						<h:outputLabel value="Data de Demissão:" for="dataD-texto"/>
+						<h:inputText id="dataD-texto" required="true" requiredMessage="Preenchimento da Data de Demissão é obrigatório!">
+							<f:convertNumber integerOnly="true" />
+						</h:inputText>
+						<h:message for="dataD-texto" errorClass="erro"/>
+						
+						
+						<h:commandButton value="Calcular" action="#{cadUser.cadastrar}"/>
+				
+					
+				
+				</h:panelGrid>
+			</fieldset>
+			
+			</h:form>
+		</div>
+		
+		<div class="banner-1">
+			<h:form>
+				<a  class="rss-link" target="_blank" href="http://twitter.com/BethaSistemas">
+					<img class="rss-img" alt="RSS Betha" src="imagens/rss.png" title="RSS Feed Betha Sistemas"/>
+				</a>
+				
+				<a class="twitter-link" target="_blank" href="http://twitter.com/BethaSistemas" >
+					<img class="twitter-img" alt="Twitter Betha" src="imagens/twitter.png" title="Twitter Betha Sistemas"/>
+				</a>
+				<a class="youtube-link" target="_blank" href="http://www.youtube.com/bethasistemas" >
+					<img class="youtube-img" alt="Youtube Betha" src="imagens/youtube.png" title="Youtube Betha Sistemas"/>
+				</a>
+				<a class="facebook-link" target="_blank" href="http://www.facebook.com/bethasistemas" >
+					<img class="facebook-img" alt="Facebook Betha" src="imagens/facebook.png" title="Facebook Betha Sistemas"/>
+				</a>
+				
+			</h:form>
+		</div>
+	</ui:define>
+	
+</ui:composition>
