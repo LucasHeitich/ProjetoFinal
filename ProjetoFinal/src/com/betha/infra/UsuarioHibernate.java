@@ -15,10 +15,6 @@ public class UsuarioHibernate implements UsuariosRepo {
 		this.session=session;
 	}
 	
-	public void insert(Usuario user){
-		this.session.persist(user);
-	}
-	
 	public List<Usuario> listar() {
 		
 		return session.createCriteria(Usuario.class).list();
