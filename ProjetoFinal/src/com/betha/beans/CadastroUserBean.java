@@ -10,7 +10,7 @@ import com.betha.util.Repositorios;
 
 /**
  * @author Administrador
- *gfffgtleandro
+ *LUCAS
  */
 public class CadastroUserBean {
 	
