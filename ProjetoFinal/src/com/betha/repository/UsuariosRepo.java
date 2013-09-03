@@ -8,4 +8,8 @@ public interface UsuariosRepo {
 	
 	public List<Usuario> listar();
 	
+	public List<Usuario> orderAsc();
+	
+	public List<Usuario> orderDesc();
+	
 }

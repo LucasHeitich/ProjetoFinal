@@ -5,6 +5,7 @@ package com.betha.beans;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import org.hibernate.Session;
 
@@ -24,10 +25,10 @@ import com.betha.util.UsuarioComparar;
 public class TabelaBean {
 	
 	
-	private ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
+	private List<Usuario> listaUsuario = new ArrayList<Usuario>();
 	private ArrayList<Usuario> selecionados;
-	private ArrayList<Usuario> usuarioFiltrado;
-	private ArrayList<Usuario> todosUsuarios;
+	private List<Usuario> usuarioFiltrado;
+	private List<Usuario> todosUsuarios;
 	private boolean sorted;
 	private boolean asc;
 	private boolean itemSelecionado;
@@ -67,12 +68,12 @@ public class TabelaBean {
 	
 	public TabelaBean(){
 		
-		UserDao ud = new UserDao();
+		//UserDao ud = new UserDao();
 		this.todosUsuarios = new ArrayList<Usuario>();
 		this.listaUsuario = new ArrayList<Usuario>();
 		this.cont=0;
 		//this.todosUsuarios = ud.selectAll();
-		this.todosUsuarios =  (ArrayList) Repositorios.getUsuarios().listar();
+		this.todosUsuarios =  Repositorios.getUsuarios().listar();
 	
 		
 		
@@ -146,11 +147,22 @@ public class TabelaBean {
 		this.setAsc(!this.asc);
 		
 		if (this.filtro != null && filtro.length()>0){
-			Collections.sort(this.usuarioFiltrado, new UsuarioComparar(this.asc));
+			//Collections.sort(this.usuarioFiltrado, new UsuarioComparar(this.asc));
+			
+			//this.usuarioFiltrado = Repositorios.getUsuarios().listar().add
+			if (this.asc){
+				this.usuarioFiltrado = Repositorios.getUsuarios().orderAsc();
+			}else{
+				this.usuarioFiltrado = Repositorios.getUsuarios().orderDesc();
+			}
 			
 		}else{
 			
-			Collections.sort(this.listaUsuario, new UsuarioComparar(this.asc));
+			if (this.asc){
+				this.listaUsuario = Repositorios.getUsuarios().orderAsc();
+			}else{
+				this.listaUsuario = Repositorios.getUsuarios().orderDesc();
+			}
 		}
 
 	}
@@ -257,7 +269,7 @@ public class TabelaBean {
 		this.itemSelecionado = itemSelecionado;
 	}
 
-	public ArrayList<Usuario> getListaUsuario() {
+	public List<Usuario> getListaUsuario() {
 		return listaUsuario;
 	}
 
@@ -295,7 +307,7 @@ public class TabelaBean {
 		this.ordenarPor = ordenarPor;
 	}
 
-	public ArrayList<Usuario> getUsuarioFiltrado() {
+	public List<Usuario> getUsuarioFiltrado() {
 		return usuarioFiltrado;
 	}
 
