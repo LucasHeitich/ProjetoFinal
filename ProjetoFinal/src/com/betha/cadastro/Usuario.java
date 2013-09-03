@@ -6,6 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -16,11 +20,12 @@ public class Usuario {
 
 	private String nome,email,senha,telefone;
 	private String sexo;
-	private int codigo;
-	private boolean forasteiro;
-	private String vertical;
+	private Integer codigo;
+	private Endereco endereco;
+	//private boolean forasteiro;
+	//private String vertical;
 	private boolean selecionado;
-	private ArrayList<String> hobbies = new ArrayList<String>();
+	//private ArrayList<String> hobbies = new ArrayList<String>();
 	
 	public String getEmail() {
 		return email;
@@ -40,6 +45,7 @@ public class Usuario {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+	/*
 	public boolean isForasteiro() {
 		return forasteiro;
 	}
@@ -51,19 +57,20 @@ public class Usuario {
 	}
 	public void setVertical(String vertical) {
 		this.vertical = vertical;
-	}
+	}*/
 	public boolean isSelecionado() {
 		return selecionado;
 	}
 	public void setSelecionado(boolean selecionado) {
 		this.selecionado = selecionado;
 	}
+	/*
 	public ArrayList<String> getHobbies() {
 		return hobbies;
 	}
 	public void setHobbies(ArrayList<String> hobbies) {
 		this.hobbies = hobbies;
-	}
+	}*/
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
@@ -90,5 +97,13 @@ public class Usuario {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	@ManyToMany
+	@JoinColumn(name="endereco") //fk
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

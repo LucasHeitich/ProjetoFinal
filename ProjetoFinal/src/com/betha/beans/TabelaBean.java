@@ -42,30 +42,9 @@ public class TabelaBean {
 	private boolean excessoNoArray;
 	public int numeroDePagina=0;
 	private boolean anterior=true,proximo=false;
-	
-	
-	public boolean isAnterior() {
-		return anterior;
-	}
-
-
-	public void setAnterior(boolean anterior) {
-		this.anterior = anterior;
-	}
-
-
-	public boolean isProximo() {
-		return proximo;
-	}
-
-
-	public void setProximo(boolean proximo) {
-		this.proximo = proximo;
-	}
-
-
 	private String label="botão desabilitado";
 	
+		
 	public TabelaBean(){
 		
 		//UserDao ud = new UserDao();
@@ -252,7 +231,24 @@ public class TabelaBean {
 	
 	}
 	
-	
+	public boolean isAnterior() {
+		return anterior;
+	}
+
+
+	public void setAnterior(boolean anterior) {
+		this.anterior = anterior;
+	}
+
+
+	public boolean isProximo() {
+		return proximo;
+	}
+
+
+	public void setProximo(boolean proximo) {
+		this.proximo = proximo;
+	}
 	public Pessoa getUser() {
 		return user;
 	}

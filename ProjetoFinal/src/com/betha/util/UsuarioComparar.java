@@ -11,6 +11,8 @@ import com.betha.cadastro.Pessoa;
  * @author Administrador
  *
  */
+
+//!!!!!!CLASSE EXTINTA!!!!!!!
 public class UsuarioComparar implements Comparator<Pessoa> {
 
 

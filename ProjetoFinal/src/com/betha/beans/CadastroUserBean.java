@@ -3,8 +3,10 @@ package com.betha.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.betha.cadastro.Pessoa;
+
+import com.betha.cadastro.Usuario;
 import com.betha.model.UserDao;
+import com.betha.util.Repositorios;
 
 /**
  * @author Administrador
@@ -12,17 +14,18 @@ import com.betha.model.UserDao;
  */
 public class CadastroUserBean {
 	
-	private Pessoa user;
-	private List<Pessoa> userList;
-	private Pessoa userSelected;
+	private Usuario user;
+	private List<Usuario> userList;
+	private Usuario userSelected;
 	private boolean cadastro;
 	
 	
 	public CadastroUserBean(){
-		this.user=new Pessoa();
-		this.userList= new ArrayList<Pessoa>();
-		UserDao ud = new UserDao();
-		userList=(List<Pessoa>) ud.selectAll();
+		this.user=new Usuario();
+		this.userList= new ArrayList<Usuario>();
+		//UserDao ud = new UserDao();
+		//userList=(List<Usuario>) ud.selectAll();
+		userList=Repositorios.getUsuarios().listar();
 	}
 	
 	
@@ -37,12 +40,13 @@ public class CadastroUserBean {
 		
 		
 		
-		this.user = new Pessoa();		
+		this.user = new Usuario();		
 	}
 	
-	public void botaoClicado(){
-		System.out.println("Bot�o no Action");
-	}
+	/*public void botaoClicado(){
+		System.out.println("Botão no Action");
+	}*/
+	
 	public void excluir(){
 		this.userList.remove(this.userSelected);
 		UserDao ud = new UserDao();
@@ -50,18 +54,18 @@ public class CadastroUserBean {
 		this.cadastro=false;
 	}
 
-	public Pessoa getUser() {
+	public Usuario getUser() {
 		return user;
 	}
-	public List<Pessoa> getUserList() {
+	public List<Usuario> getUserList() {
 		return userList;
 	}
 	
-	public Pessoa getUserSelected() {
+	public Usuario getUserSelected() {
 		return userSelected;
 	}
 
-	public void setUserSelected(Pessoa userSelected) {
+	public void setUserSelected(Usuario userSelected) {
 		this.userSelected = userSelected;
 	}
 
