@@ -8,7 +8,7 @@ import com.betha.cadastro.Usuario;
 
 import com.betha.util.Repositorios;
 
-/**hjhgjhgfh
+/**hjhgjhgfhteste do leandro
  * @author Administrador
 */
 public class CadastroUserBean {
