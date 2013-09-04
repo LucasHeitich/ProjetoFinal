@@ -38,13 +38,13 @@ public class CadastroUserBean {
 		
 		//UserDao ud = new UserDao();
 		
-<<<<<<< HEAD
+
 		//ud.insert(this.user);
 		Repositorios.getUsuarios().insert(this.user); //inserindo o usuário e seu endereço no banco!
 		
-=======
-		ud.insert(this.user);
->>>>>>> refs/remotes/origin/master
+
+		//ud.insert(this.user);
+
 		//System.out.println(this.user.getHobbies().get(1));
 		this.cadastro=true;
 		

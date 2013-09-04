@@ -11,6 +11,8 @@ public interface UsuariosRepo {
 	public List<Usuario> orderAsc();
 	
 	public List<Usuario> orderDesc();
+
+	public void insert(Usuario user);
 	
 	
 	

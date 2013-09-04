@@ -32,4 +32,10 @@ public class UsuarioHibernate implements UsuariosRepo {
 		return this.session.createCriteria(Usuario.class).addOrder(Order.desc("nome")).list();
 	}
 
+	@Override
+	public void insert(Usuario user) {
+		this.session.persist(user);
+		
+	}
+
 }
