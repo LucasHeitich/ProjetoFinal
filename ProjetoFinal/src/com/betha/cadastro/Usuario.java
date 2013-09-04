@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Pessoas")
 public class Usuario {
-
+//asdasds
 	private String nome;
 	private String email;
 	private String senha;
