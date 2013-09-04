@@ -37,5 +37,9 @@ public class UsuarioHibernate implements UsuariosRepo {
 		this.session.persist(user);
 		
 	}
+	
+	public void alterar(Usuario user){
+		this.session.merge(user);
+	}
 
 }
