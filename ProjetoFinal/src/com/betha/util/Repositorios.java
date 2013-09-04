@@ -10,6 +10,6 @@ public class Repositorios {
 	private static Session session = (Session) FacesUtil.getRequestAttribute("session");
 	
 	public static UsuariosRepo getUsuarios(){
-		return  (UsuariosRepo) new UsuarioHibernate(session);
+		return new UsuarioHibernate(session);
 	}
 }

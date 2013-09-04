@@ -23,33 +23,11 @@
 						</h:selectOneRadio>
 						<h:message for="sexo" errorClass="erro"/>
 						
-						<!-- BooleanCheckBox -->
-						
-						<!-- <h:outputLabel value="Forasteiro:"/> 
-						 <h:selectBooleanCheckbox id="foreign" value="#{cadUser.user.forasteiro}"/>
-						 -->
-						
-						<!-- CheckBox -->
-						
-						<!-- 
-						<h:outputLabel value="Hobbies:"/>
-						<h:selectManyCheckbox value="#{cadUser.user.hobbies}">
-							<f:selectItem itemValue="Esportes" itemLabel="Futebol"/>
-							<f:selectItem itemValue="Games" itemLabel="Videogame"/>
-							<f:selectItem itemValue="Cinema" itemLabel="Cinema"/>
-						</h:selectManyCheckbox>
-						-->
-						<!-- SelectOneMenu (Lista ComboBox) -->
-						<!-- 
-						<h:outputLabel value="Vertical:"/>
-						<h:selectOneMenu value="#{cadUser.user.vertical}">
-							<f:selectItem itemValue="none" itemLabel="-----"/>
-							<f:selectItem itemValue="Saúde" itemLabel="V. Saúde"/>
-							<f:selectItem itemValue="Pessoal" itemLabel="V. Pessoal"/>
-							<f:selectItem itemValue="Contábil" itemLabel="V. Contábil"/>
-						</h:selectOneMenu>
-						 -->
-						
+						<h:outputLabel value="Telefone:" for="telefone"/>
+						<h:inputText id="telefone" required="true" requiredMessage="Preenchimento do Telefone é obrigatório!" value="#{cadUser.user.telefone}" maxlength="10"
+						label="Campo telefone"/>
+						<h:message for="telefone" errorClass="erro"/>				
+												
 						<h:outputLabel value="Email:" for="email" />
 						<h:inputText maxlength="45" label="Campo Email" value="#{cadUser.user.email}" id="email" required="true" 
 						requiredMessage="Preenchimento do E-mail é obrigatório! "/>
