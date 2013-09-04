@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.betha.selecionar;
+package com.betha.beans;
 
 /**
  * @author Administrador
  *
  */
-public class SelecionarTodos {
+public class SelecionarBean {
 
 	private boolean selecionado;
 
