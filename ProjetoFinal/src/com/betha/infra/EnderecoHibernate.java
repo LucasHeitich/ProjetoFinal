@@ -6,7 +6,7 @@ import org.hibernate.criterion.Order;
 import com.betha.cadastro.Endereco;
 import com.betha.cadastro.Usuario;
 import com.betha.repository.EnderecoRepo;
-
+//d
 public class EnderecoHibernate implements EnderecoRepo{
 	private Session session;
 	
