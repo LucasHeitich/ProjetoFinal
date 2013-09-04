@@ -61,9 +61,7 @@
 			<h:column headerClass="check-column">
 				<f:facet name="header">Nome
 					<h:commandButton image="#{relatorioBean.asc ? 'imagens/asc.gif' : (relatorioBean.sorted ? 'imagens/desc.gif' : 'imagens/sort.gif')  }">
-						<f:ajax event="click" listener="#{relatorioBean.sort}" render="tabela">
-						 </f:ajax>
-						 <f:ajax ></f:ajax>
+						<f:ajax event="click" listener="#{relatorioBean.sort}" render="tabela"/>
 					</h:commandButton>
 				
 				</f:facet>
@@ -71,7 +69,8 @@
 			</h:column>
 			<h:column headerClass="check-column">
 				<f:facet name="header">Email</f:facet>
-				<h:outputText value="#{item.email}"/>
+				<h:outputText value="#{item.email}" rendered="#{not(relatorioBean.usuarioSelecionado eq item)}"/>
+				<h:inputText value="#{item.email}" rendered="#{relatorioBean.usuarioSelecionado eq item}" />
 			</h:column>
 			
 			<h:column headerClass="check-column">
