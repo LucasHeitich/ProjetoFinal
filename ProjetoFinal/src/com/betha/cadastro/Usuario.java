@@ -18,7 +18,10 @@ import javax.persistence.Table;
 @Table(name="Pessoas")
 public class Usuario {
 
-	private String nome,email,senha,telefone;
+	private String nome;
+	private String email;
+	private String senha;
+	private String telefone;
 	private String sexo;
 	private Integer codigo;
 	private Endereco endereco;
