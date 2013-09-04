@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.betha.beans;
 
 /**
@@ -22,6 +20,4 @@ public class RedirecionarPaginaBean {
 	public void setLocal(String local) {
 		this.local = local;
 	}
-
-	
 }

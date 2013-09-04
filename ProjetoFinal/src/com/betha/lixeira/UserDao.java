@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.betha.cadastro.Pessoa;
+
 
 public class UserDao extends MaeConexao implements Dao<Pessoa> {
 

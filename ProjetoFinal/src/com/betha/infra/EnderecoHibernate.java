@@ -31,10 +31,10 @@ public class EnderecoHibernate implements EnderecoRepo{
 	}
 
 	@Override
-	public Endereco porCodigo() {
+	public Endereco porCodigo(Integer codigo) {
 		
-		return (Endereco)session.get(Endereco, codigo);
-		//return (Usuario)session.getId(Usuario.class,codigo);
+		return (Endereco)session.get(Endereco.class,codigo);
+		
 	}
 
 }

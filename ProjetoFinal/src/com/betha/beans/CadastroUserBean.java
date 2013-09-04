@@ -8,7 +8,7 @@ import com.betha.cadastro.Usuario;
 
 import com.betha.util.Repositorios;
 
-/**hjhgjhgfhteste do leandro
+/**
  * @author Administrador
 */
 public class CadastroUserBean {
@@ -18,7 +18,6 @@ public class CadastroUserBean {
 	private Usuario userSelected;
 	private boolean cadastro;
 	
-	
 	public CadastroUserBean(){
 		this.user=new Usuario();
 		this.userList= new ArrayList<Usuario>();
@@ -27,24 +26,18 @@ public class CadastroUserBean {
 		userList=Repositorios.getUsuarios().listar();
 	}
 	
-	
 	public void cadastrar(){
 		this.userList.add(this.user);
 		
 		//UserDao ud = new UserDao();
-		
-
+	
 		//ud.insert(this.user);
 		Repositorios.getUsuarios().insert(this.user); //inserindo o usuário e seu endereço no banco!
-		
 
 		//ud.insert(this.user);
 
 		//System.out.println(this.user.getHobbies().get(1));
 		this.cadastro=true;
-		
-		
-		
 		this.user = new Usuario();		
 	}
 	
@@ -73,16 +66,12 @@ public class CadastroUserBean {
 	public void setUserSelected(Usuario userSelected) {
 		this.userSelected = userSelected;
 	}
-
-
+	
 	public boolean isCadastro() {
 		return cadastro;
 	}
 
-
 	public void setCadastro(boolean cadastro) {
 		this.cadastro = cadastro;
 	}
-
-
 }

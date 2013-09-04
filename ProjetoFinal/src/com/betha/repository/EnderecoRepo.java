@@ -19,6 +19,6 @@ public interface EnderecoRepo {
 	
 	public List<Endereco> orderDesc();
 	
-	public Object porCodigo();
+	public Object porCodigo(Integer codigo);
 	
 }

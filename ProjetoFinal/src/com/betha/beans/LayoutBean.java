@@ -7,8 +7,6 @@ public class LayoutBean {
 	private Calendar c = Calendar.getInstance();
 	private String data;
 	
-
-	
 	public Calendar getC() {
 		return c;
 	}
@@ -25,5 +23,4 @@ public class LayoutBean {
 	public void setData(String data) {
 		this.data = data;
 	}
-	
 }
