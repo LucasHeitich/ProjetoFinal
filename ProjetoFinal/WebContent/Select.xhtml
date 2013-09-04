@@ -78,10 +78,12 @@
 				<f:facet name="header">Telefone</f:facet>
 				<h:outputText value="#{item.telefone}"/>
 			</h:column>
-			
 			<!-- Opção editar -->
 			<h:column headerClass="check-column">
-				<h:commandLink title="Editar Usuário"><h:graphicImage value="/imagens/updateIcon.jpg"/></h:commandLink> 
+				<h:commandButton image="#{relatorioBean.usuarioSelecionado eq item ? '/imagens/save.png':'/imagens/updateIcon.jpg'}"
+				 title="#{relatorioBean.usuarioSelecionado eq item?'Salvar este usuário':'Editar este usuário'}">
+					<f:ajax execute="@form" listener="#{relatorioBean.alterar(item)}" render="@form" />
+				</h:commandButton> 
 			</h:column>
 			<!-- Opção deletar -->
 			<h:column headerClass="check-column">

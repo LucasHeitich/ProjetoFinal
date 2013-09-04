@@ -14,6 +14,8 @@ public interface UsuariosRepo {
 
 	public void insert(Usuario user);
 	
+	public void alterar(Usuario user);
+	
 	
 	
 }

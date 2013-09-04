@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
@@ -48,7 +51,11 @@ public class RelatorioBean {
 	public int numeroDePagina=0;
 	private boolean anterior=true,proximo=false;
 	private String label="botão desabilitado";
+	private Usuario usuarioSelecionado;
 	
+	
+
+
 	public UsuariosRepo usuarios = Repositorios.getUsuarios();
 	public RelatorioBean(){
 		
@@ -224,6 +231,18 @@ public class RelatorioBean {
 	
 	}
 	
+	public void alterar(Usuario user){
+		
+		if (this.usuarioSelecionado == null || this.usuarioSelecionado != user){
+			this.usuarioSelecionado=user;
+		}else{
+			usuarios.alterar(user);
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Pessoa excluída com sucesso!", ""));
+			this.usuarioSelecionado=null;
+		}
+	}
+	
 	public boolean isAnterior() {
 		return anterior;
 	}
@@ -356,7 +375,14 @@ public class RelatorioBean {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+	public Usuario getUsuarioSelecionado() {
+		return usuarioSelecionado;
+	}
 
+
+	public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
+		this.usuarioSelecionado = usuarioSelecionado;
+	}
 	
 
 }
