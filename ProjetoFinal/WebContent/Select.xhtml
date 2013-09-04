@@ -41,7 +41,7 @@
 							<f:ajax event="click" listener="#{relatorioBean.marcaTodos}" render="tabela"/>
 						</h:selectBooleanCheckbox>
 					</f:facet>
-					<h:selectBooleanCheckbox  value="#{item.selecionado}"/>
+					<h:selectBooleanCheckbox  value="#{selecionadoBean.selecionado}"/>
 				</h:column>
 			
 			<h:column headerClass="check-column">
@@ -56,7 +56,7 @@
 				
 				</f:facet>
 				
-				<h:outputText value="#{item.id}"/>
+				<h:outputText value="#{item.codigo}"/>
 			</h:column>
 			<h:column headerClass="check-column">
 				<f:facet name="header">Nome
@@ -72,6 +72,11 @@
 			<h:column headerClass="check-column">
 				<f:facet name="header">Email</f:facet>
 				<h:outputText value="#{item.email}"/>
+			</h:column>
+			
+			<h:column headerClass="check-column">
+				<f:facet name="header">Telefone</f:facet>
+				<h:outputText value="#{item.telefone}"/>
 			</h:column>
 			
 			<!-- Opção editar -->

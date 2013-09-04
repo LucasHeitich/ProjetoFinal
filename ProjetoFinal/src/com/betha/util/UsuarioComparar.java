@@ -1,11 +1,12 @@
 /**
  * 
  */
-package com.betha.lixeira;
+package com.betha.util;
 
 import java.util.Comparator;
 
-import com.betha.cadastro.Pessoa;
+ 
+import com.betha.cadastro.Usuario;
 
 /**
  * @author Administrador
@@ -13,7 +14,7 @@ import com.betha.cadastro.Pessoa;
  */
 
 //!!!!!!CLASSE EXTINTA!!!!!!!
-public class UsuarioComparar implements Comparator<Pessoa> {
+public class UsuarioComparar implements Comparator<Usuario> {
 
 
 	public boolean asc;
@@ -23,7 +24,7 @@ public class UsuarioComparar implements Comparator<Pessoa> {
 	}
 
 
-	public int compare(Pessoa usuario1, Pessoa usuario2) {
+	public int compare(Usuario usuario1, Usuario usuario2) {
 		
 		if (this.asc)
 			

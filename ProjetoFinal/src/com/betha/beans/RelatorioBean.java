@@ -8,11 +8,16 @@ import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+
 
 
 
 import com.betha.cadastro.Usuario;
 
+import com.betha.util.UsuarioComparar;
+import com.betha.repository.UsuariosRepo;
+import com.betha.util.FabricaSessao;
 import com.betha.util.FacesUtil;
 import com.betha.util.Repositorios;
 
@@ -44,7 +49,7 @@ public class RelatorioBean {
 	private boolean anterior=true,proximo=false;
 	private String label="botão desabilitado";
 	
-		
+	public UsuariosRepo usuarios = Repositorios.getUsuarios();
 	public RelatorioBean(){
 		
 		//UserDao ud = new UserDao();
@@ -52,7 +57,8 @@ public class RelatorioBean {
 		this.listaUsuario = new ArrayList<Usuario>();
 		this.cont=0;
 		//this.todosUsuarios = ud.selectAll();
-		this.todosUsuarios =  Repositorios.getUsuarios().listar();
+		
+		this.todosUsuarios =  usuarios.listar();
 	
 		
 		
@@ -124,24 +130,11 @@ public class RelatorioBean {
 		
 		this.setSorted(true);
 		this.setAsc(!this.asc);
-		
+		Session session = FabricaSessao.abrirSessao();
 		if (this.filtro != null && filtro.length()>0){
-			//Collections.sort(this.usuarioFiltrado, new UsuarioComparar(this.asc));
-			
-			//this.usuarioFiltrado = Repositorios.getUsuarios().listar().add
-			if (this.asc){
-				this.usuarioFiltrado = Repositorios.getUsuarios().orderAsc();
-			}else{
-				this.usuarioFiltrado = Repositorios.getUsuarios().orderDesc();
-			}
-			
+			Collections.sort((ArrayList)this.usuarioFiltrado, new UsuarioComparar(this.asc));
 		}else{
-			
-			if (this.asc){
-				this.listaUsuario = Repositorios.getUsuarios().orderAsc();
-			}else{
-				this.listaUsuario = Repositorios.getUsuarios().orderDesc();
-			}
+			Collections.sort((ArrayList)this.listaUsuario, new UsuarioComparar(this.asc));
 		}
 
 	}

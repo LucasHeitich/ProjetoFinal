@@ -15,11 +15,7 @@
 		<managed-bean-class>com.betha.beans.RedirecionarPaginaBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>actionUmBean</managed-bean-name>
-		<managed-bean-class>com.betha.beans.ActionUmBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
+	
 	<managed-bean>
 		<managed-bean-name>layoutBean</managed-bean-name>
 		<managed-bean-class>com.betha.beans.LayoutBean</managed-bean-class>
@@ -28,6 +24,11 @@
 	<managed-bean>
 		<managed-bean-name>relatorioBean</managed-bean-name>
 		<managed-bean-class>com.betha.beans.RelatorioBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>selecionarBean</managed-bean-name>
+		<managed-bean-class>com.betha.beans.SelecionarBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>
