@@ -10,12 +10,7 @@ import com.betha.util.Repositorios;
 
 /**
  * @author Administrador
-<<<<<<< HEAD
- *
-=======
- *gfffgt
->>>>>>> refs/remotes/origin/master
- */
+*/
 public class CadastroUserBean {
 	
 	private Usuario user;
