@@ -6,7 +6,7 @@ import org.hibernate.criterion.Order;
 import com.betha.cadastro.Endereco;
 import com.betha.cadastro.Usuario;
 import com.betha.repository.EnderecoRepo;
-//d
+
 public class EnderecoHibernate implements EnderecoRepo{
 	private Session session;
 	
@@ -30,7 +30,7 @@ public class EnderecoHibernate implements EnderecoRepo{
 		return this.session.createCriteria(Usuario.class).addOrder(Order.desc("descricao")).list();
 	}
 
-	@Override
+
 	public Endereco porCodigo(Integer codigo) {
 		
 		return (Endereco)session.get(Endereco.class,codigo);
