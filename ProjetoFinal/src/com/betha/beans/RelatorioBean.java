@@ -52,11 +52,8 @@ public class RelatorioBean {
 	private boolean anterior=true,proximo=false;
 	private String label="botão desabilitado";
 	private Usuario usuarioSelecionado;
-	
-	
-
-
 	public UsuariosRepo usuarios = Repositorios.getUsuarios();
+	
 	public RelatorioBean(){
 		
 		//UserDao ud = new UserDao();
@@ -137,7 +134,7 @@ public class RelatorioBean {
 		
 		this.setSorted(true);
 		this.setAsc(!this.asc);
-		Session session = FabricaSessao.abrirSessao();
+		
 		if (this.filtro != null && filtro.length()>0){
 			Collections.sort((ArrayList)this.usuarioFiltrado, new UsuarioComparar(this.asc));
 		}else{
@@ -238,7 +235,7 @@ public class RelatorioBean {
 		}else{
 			usuarios.alterar(user);
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Pessoa excluída com sucesso!", ""));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Pessoa editada com sucesso!", ""));
 			this.usuarioSelecionado=null;
 		}
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import com.betha.cadastro.Usuario;
+import com.betha.lixeira.UserDao;
 
 import com.betha.util.Repositorios;
 
@@ -21,9 +22,9 @@ public class CadastroUserBean {
 	public CadastroUserBean(){
 		this.user=new Usuario();
 		this.userList= new ArrayList<Usuario>();
-		//UserDao ud = new UserDao();
-		//userList=(List<Usuario>) ud.selectAll();
-		userList=Repositorios.getUsuarios().listar();
+		UserDao ud = new UserDao();
+		userList=(List<Usuario>) ud.selectAll();
+		//userList=Repositorios.getUsuarios().listar();
 	}
 	
 	public void cadastrar(){

@@ -5,19 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.betha.cadastro.Usuario;
 
 
-public class UserDao extends MaeConexao implements Dao<Pessoa> {
+
+public class UserDao extends MaeConexao implements Dao<Usuario> {
 
 	@Override
-	public ArrayList<Pessoa> selectAll() {
-		ArrayList<Pessoa> user = new ArrayList<Pessoa>();
+	public ArrayList<Usuario> selectAll() {
+		ArrayList<Usuario> user = new ArrayList<Usuario>();
 		try {
 			
 			PreparedStatement ps = this.con.prepareStatement("Select * from user");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()){
-				user.add(new Pessoa(rs.getInt("idUser"),rs.getString("Nome"),rs.getString("Email"),rs.getString("Senha")));
+				user.add(new Usuario(rs.getInt("idUser"),rs.getString("Nome"),rs.getString("Email"),rs.getString("Senha")));
 			}
 		}catch (SQLException s){
 			return null;
@@ -28,7 +30,7 @@ public class UserDao extends MaeConexao implements Dao<Pessoa> {
 	
 
 	@Override
-	public void insert(Pessoa objeto) {
+	public void insert(Usuario objeto) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -59,7 +61,7 @@ public class UserDao extends MaeConexao implements Dao<Pessoa> {
 		return null;
 	}
 	
-	public int selectOne(Pessoa objeto) {
+	public int selectOne(Usuario objeto) {
 		
 		try {
 			PreparedStatement ps = this.con.prepareStatement("Select idUser from user where nome=? and email=? and senha=?");
@@ -80,7 +82,7 @@ public class UserDao extends MaeConexao implements Dao<Pessoa> {
 	}
 
 	@Override
-	public void delete(Pessoa objeto) {
+	public void delete(Usuario objeto) {
 	
 		
 	}
