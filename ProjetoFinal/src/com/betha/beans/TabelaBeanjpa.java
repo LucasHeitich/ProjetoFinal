@@ -1,12 +1,12 @@
 package com.betha.beans;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.hibernate.Session;
 
 import com.betha.cadastro.Usuario;
-import com.betha.util.FabricaSessao;
+
 import com.betha.util.FacesUtil;
 import com.betha.util.Repositorios;
 

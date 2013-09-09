@@ -26,5 +26,6 @@ public class FabricaSessao {
 	
 	public static Session abrirSessao(){
 		return sessionFactory.openSession();
+		
 	}
 }

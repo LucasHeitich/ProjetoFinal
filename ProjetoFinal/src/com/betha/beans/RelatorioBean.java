@@ -64,9 +64,6 @@ public class RelatorioBean {
 		
 		this.todosUsuarios =  usuarios.listar();
 	
-		
-		
-		
 		this.selecionados=new ArrayList<Usuario>();
 	}
 	
@@ -233,6 +230,8 @@ public class RelatorioBean {
 		if (this.usuarioSelecionado == null || this.usuarioSelecionado != user){
 			this.usuarioSelecionado=user;
 		}else{
+			
+			System.out.println("teste: "+ user.getNome());
 			usuarios.alterar(user);
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Pessoa editada com sucesso!", ""));
