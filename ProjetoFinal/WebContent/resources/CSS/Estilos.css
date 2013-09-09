@@ -20,7 +20,10 @@
 	width: 100%;
 }
 
-
+.check-box{
+	float: left;
+	
+}
 .check-column{
 	padding:5px;
 	background-color: black;
@@ -56,6 +59,7 @@ legend{
 	
 }
 .header{
+	
 	background: url(#{resource['imagens:bg_black_gradient.jpg']});
 	
 	height: 102px;

@@ -9,13 +9,13 @@ import com.betha.repository.UsuariosRepo;
 
 public class Repositorios {
 	
-	private static Session session = (Session) FacesUtil.getRequestAttribute("session");
+	private Session session = (Session) FacesUtil.getRequestAttribute("session");
 	
-	public static UsuariosRepo getUsuarios(){
+	public UsuariosRepo getUsuarios(){
 		return new UsuarioHibernate(session);
 	}
 	
-	public static EnderecoRepo getEndereco(){
+	public EnderecoRepo getEndereco(){
 		return new EnderecoHibernate(session);
 	}
 }

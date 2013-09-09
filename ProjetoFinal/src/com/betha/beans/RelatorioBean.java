@@ -21,6 +21,7 @@ import com.betha.cadastro.Usuario;
 import com.betha.util.UsuarioComparar;
 import com.betha.repository.EnderecoRepo;
 import com.betha.repository.UsuariosRepo;
+import com.betha.session.SessionFilter;
 import com.betha.util.FabricaSessao;
 import com.betha.util.FacesUtil;
 import com.betha.util.Repositorios;
@@ -53,17 +54,21 @@ public class RelatorioBean {
 	private boolean anterior=true,proximo=false;
 	private String label="botão desabilitado";
 	private Usuario usuarioSelecionado;
-	public UsuariosRepo usuarios = Repositorios.getUsuarios();
-	public EnderecoRepo endereco = Repositorios.getEndereco();
+	private Repositorios repo;
+	public UsuariosRepo usuarios;
+	
+	
 	public RelatorioBean(){
-		
+		SessionFilter s = new SessionFilter();
+		this.repo = new Repositorios();
+		this.usuarios = repo.getUsuarios();
 		//UserDao ud = new UserDao();
 		this.todosUsuarios = new ArrayList<Usuario>();
 		this.listaUsuario = new ArrayList<Usuario>();
 		this.cont=0;
 		//this.todosUsuarios = ud.selectAll();
 		
-		this.todosUsuarios =  usuarios.listar();
+		this.todosUsuarios =  repo.getUsuarios().listar();
 	
 		this.selecionados=new ArrayList<Usuario>();
 	}

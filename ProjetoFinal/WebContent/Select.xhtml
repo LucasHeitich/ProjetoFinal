@@ -37,11 +37,11 @@
 			rendered="#{not empty relatorioBean.listaUsuario}">
 				<h:column headerClass="check-column">
 					<f:facet name="header">
-						<h:selectBooleanCheckbox style="margin-left:-45px;" id="checkAll" value="#{relatorioBean.itemSelecionado}">
+						<h:selectBooleanCheckbox styleClass="check-box" id="checkAll" value="#{relatorioBean.itemSelecionado}">
 							<f:ajax event="click" listener="#{relatorioBean.marcaTodos}" render="tabela"/>
 						</h:selectBooleanCheckbox>
 					</f:facet>
-					<h:selectBooleanCheckbox  value="#{selecionadoBean.selecionado}"/>
+					<h:selectBooleanCheckbox styleClass="check-box" value="#{selecionadoBean.selecionado}"/>
 				</h:column>
 			
 			<h:column headerClass="check-column">
@@ -82,6 +82,7 @@
 				<f:facet name="header">Endereço</f:facet>
 				<h:outputText value="#{item.endereco.descricao}"/>
 			</h:column>
+			
 			<!-- Opção editar -->
 			<h:column headerClass="check-column">
 				<h:commandButton image="#{relatorioBean.usuarioSelecionado eq item ? '/imagens/save.png':'/imagens/updateIcon.jpg'}"

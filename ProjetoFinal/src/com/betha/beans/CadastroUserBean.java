@@ -6,7 +6,10 @@ import java.util.List;
 
 import com.betha.cadastro.Endereco;
 import com.betha.cadastro.Usuario;
-import com.betha.lixeira.UserDao;
+
+
+import com.betha.repository.EnderecoRepo;
+import com.betha.repository.UsuariosRepo;
 
 import com.betha.util.Repositorios;
 
@@ -20,38 +23,30 @@ public class CadastroUserBean {
 	private Usuario userSelected;
 	private Endereco endereco;
 	private boolean cadastro;
+	private Repositorios repo;
+	private UsuariosRepo usuariosHibernate;
+	private EnderecoRepo enderecoHibernate;
 	
 	public CadastroUserBean(){
+		this.repo = new Repositorios();
+		
+		this.usuariosHibernate = repo.getUsuarios();
+		this.enderecoHibernate = repo.getEndereco();
 		this.user=new Usuario();
 		this.userList= new ArrayList<Usuario>();
 		this.endereco = new Endereco();
 		this.user.setEndereco(this.endereco);
-		//UserDao ud = new UserDao();
-		//userList=(List<Usuario>) ud.selectAll();
-		//userList=Repositorios.getUsuarios().listar();
+		
+		
 	}
 	
 	public void cadastrar(){
-		//this.userList.add(this.user);
 		
-		//UserDao ud = new UserDao();
-		System.out.println("nome:"+user.getNome());
-		System.out.println("email:"+user.getEmail());
-		System.out.println("endereco:"+this.user.getEndereco().getDescricao());
-		//ud.insert(this.user);
-		Repositorios.getEndereco().insert(this.user.getEndereco());
-		Repositorios.getUsuarios().insert(this.user); //inserindo o usuário e seu endereço no banco!
-
-		//ud.insert(this.user);
-
-		//System.out.println(this.user.getHobbies().get(1));
-		//this.cadastro=true;
+		this.enderecoHibernate.insert(this.user.getEndereco());
+		this.usuariosHibernate.insert(this.user); //inserindo o usuário e seu endereço no banco!
 		this.user = new Usuario();		
 	}
 	
-	/*public void botaoClicado(){
-		System.out.println("Botão no Action");
-	}*/
 	
 	public void excluir(){ /** Método extinto **/
 		//this.userList.remove(this.userSelected);
@@ -81,5 +76,12 @@ public class CadastroUserBean {
 
 	public void setCadastro(boolean cadastro) {
 		this.cadastro = cadastro;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }
