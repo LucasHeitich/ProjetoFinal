@@ -19,6 +19,7 @@ import org.hibernate.criterion.Order;
 import com.betha.cadastro.Usuario;
 
 import com.betha.util.UsuarioComparar;
+import com.betha.repository.EnderecoRepo;
 import com.betha.repository.UsuariosRepo;
 import com.betha.util.FabricaSessao;
 import com.betha.util.FacesUtil;
@@ -53,7 +54,7 @@ public class RelatorioBean {
 	private String label="botão desabilitado";
 	private Usuario usuarioSelecionado;
 	public UsuariosRepo usuarios = Repositorios.getUsuarios();
-	
+	public EnderecoRepo endereco = Repositorios.getEndereco();
 	public RelatorioBean(){
 		
 		//UserDao ud = new UserDao();

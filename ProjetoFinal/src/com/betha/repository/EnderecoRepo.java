@@ -5,6 +5,7 @@ package com.betha.repository;
 
 import java.util.List;
 
+
 import com.betha.cadastro.Endereco;
 
 /**
@@ -20,4 +21,6 @@ public interface EnderecoRepo {
 	public List<Endereco> orderDesc();
 	
 	public Endereco porCodigo(Integer codigo);
+	
+	public void insert(Endereco endereco);
 }  

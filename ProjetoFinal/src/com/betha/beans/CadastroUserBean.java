@@ -39,6 +39,7 @@ public class CadastroUserBean {
 		System.out.println("email:"+user.getEmail());
 		System.out.println("endereco:"+this.user.getEndereco().getDescricao());
 		//ud.insert(this.user);
+		Repositorios.getEndereco().insert(this.user.getEndereco());
 		Repositorios.getUsuarios().insert(this.user); //inserindo o usuário e seu endereço no banco!
 
 		//ud.insert(this.user);

@@ -14,7 +14,10 @@ public class EnderecoHibernate implements EnderecoRepo{
 		this.session=session;
 	}
 	
-
+	
+	public void insert (Endereco endereco){
+		this.session.persist(endereco);
+	}
 	public List<Endereco> listar() {
 		
 		return session.createCriteria(Endereco.class).list();
