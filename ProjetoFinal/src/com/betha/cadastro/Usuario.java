@@ -30,7 +30,10 @@ public class Usuario {
 	public boolean selecionado;
 	//private ArrayList<String> hobbies = new ArrayList<String>();
 	
-	public Usuario(){}
+	public Usuario(){
+		
+		
+	}
 	public Usuario(int id, String nome, String email, String senha) {
 		this.codigo=id;
 		this.nome=nome;

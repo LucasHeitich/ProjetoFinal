@@ -16,7 +16,7 @@ public class FabricaConexao {
 		try {
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			this.con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ProjetoJSF","root","1234");
+			this.con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ProjetoJSF","root","");
 			
 		}catch(Exception e){
 			e.printStackTrace();
