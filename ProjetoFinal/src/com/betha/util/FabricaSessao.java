@@ -8,17 +8,18 @@ import org.hibernate.service.ServiceRegistryBuilder;
 
 public class FabricaSessao {
 	
-	private static final SessionFactory sessionFactory;
+	private static final  SessionFactory sessionFactory;
 	
 	
 	static{
 		try {
+			
 			Configuration configuration = new Configuration();
 			configuration.configure();
 			
 			ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
 			.applySettings(configuration.getProperties()).buildServiceRegistry();
-			sessionFactory= configuration.buildSessionFactory(serviceRegistry);
+			sessionFactory=  configuration.buildSessionFactory(serviceRegistry);
 		}catch(Throwable e){
 			throw new ExceptionInInitializerError(e);
 		}

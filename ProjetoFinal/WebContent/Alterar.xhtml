@@ -1,75 +1,80 @@
 <ui:composition template="/templates/Layout.xhtml"
- xmlns="http://www.w3.org/1999/xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
-	<ui:define name="conteudo">
-	
-	
-	<div class="container" style="margin-top:30px;">
-	
 
-		
-	
-		<!-- Criação da Tabela -->
-			
+	<ui:define name="conteudo">
+
+
+		<div class="container" style="margin-top: 30px;">
 			<h:form id="form">
-			<fieldset id="field">
-					<legend>Formulário</legend>
+				<fieldset id="field">
+					<legend>Editar Perfil</legend>
 					<h:panelGrid columns="1">
-				
+
 						<h:outputLabel value="Nome:" for="texto_nome" />
-						<h:inputText maxlength="45" label="Campo Nome" value="#{cadUser.user.nome}"  id="texto_nome" 
-						requiredMessage="Preenchimento do nome é obrigatório!"  />
-						<h:message for="texto_nome" errorClass="erro"/>
+						<h:inputText maxlength="45" label="Campo Nome" id="texto_nome"
+							required="true"
+							requiredMessage="Preenchimento do nome é obrigatório!"
+							value="#{relatorioBean.usuarioAlterado.nome}" />
+						<h:message for="texto_nome" errorClass="erro" />
+
+						<h:outputLabel value="Sexo:" />
 						
-						<h:outputLabel value="Sexo:"/>
 						<!-- RadioButton -->
-						<h:selectOneRadio label="Campo Sexo" id="sexo" value="#{cadUser.user.sexo}" layout="pageDirection" required="true"
-						requiredMessage="Preenchimento do sexo é obrigatório!">
-							<f:selectItem itemValue="M" itemLabel="Masculino"/>
-							<f:selectItem itemValue="F" itemLabel="Feminino"/>
+						<h:selectOneRadio label="Campo Sexo" id="sexo" required="true"
+							requiredMessage="Preenchimento do sexo é obrigatório!"
+							value="#{relatorioBean.sexo}">
+							<f:selectItem itemLabel="Masculino" itemValue="true" itemDescription="m"/>
+							<f:selectItem  itemLabel="Feminino" itemValue="false" />
 						</h:selectOneRadio>
-						<h:message for="sexo" errorClass="erro"/>
 						
-						<h:outputLabel value="Telefone:" for="telefone"/>
-						<h:inputText id="telefone" required="true" requiredMessage="Preenchimento do Telefone é obrigatório!" value="#{cadUser.user.telefone}" maxlength="10"
-						label="Campo telefone"/>
-						<h:message for="telefone" errorClass="erro"/>				
-												
+						<h:message for="sexo" errorClass="erro" />
+
+						<h:outputLabel value="Telefone:" for="telefone" />
+						<h:inputText id="telefone" required="true"
+							requiredMessage="Preenchimento do Telefone é obrigatório!"
+							maxlength="10" label="Campo telefone"
+							value="#{relatorioBean.usuarioAlterado.telefone}" />
+						<h:message for="telefone" errorClass="erro" />
+
 						<h:outputLabel value="Email:" for="email" />
-						<h:inputText maxlength="45" label="Campo Email" value="#{cadUser.user.email}" id="email" required="true" 
-						requiredMessage="Preenchimento do E-mail é obrigatório! "/>
-						<h:message for="email" errorClass="erro"/>
-						
+						<h:inputText maxlength="45" label="Campo Email" id="email"
+							required="true"
+							requiredMessage="Preenchimento do E-mail é obrigatório!"
+							value="#{relatorioBean.usuarioAlterado.email}" />
+						<h:message for="email" errorClass="erro" />
+
 						<h:outputLabel value="Endereço:" for="endereco" />
-						<h:inputText maxlength="60" label="Campo Endereco" value="#{cadUser.user.endereco.descricao}" id="endereco" required="true" 
-						requiredMessage="Preenchimento do Endereço é obrigatório! "/>
-						<h:message for="endereco" errorClass="erro"/>
-						
-						
-						<h:outputLabel value="Senha:" for="senha"/>
-						<h:inputSecret maxlength="10" label="Campo Senha" value="#{cadUser.user.senha}" id="senha" required="true" 
-						requiredMessage="Preenchimento da Senha é obrigatório!"/>
-						<h:message for="senha" errorClass="erro"/>
-						
-						<h:commandButton value="Cadastrar" action="#{cadUser.cadastrar}"/>
-						
-						<h:commandButton type="reset" value="Limpar"/>
-						
-						<h:commandButton value="Outro ActionEvent" action="#{cadUser.botaoClicado}">
-							<f:actionListener binding="#{actionUmBean}"/>
+						<h:inputText maxlength="60" label="Campo Endereco" id="endereco"
+							required="true"
+							requiredMessage="Preenchimento do Endereço é obrigatório!"
+							value="#{relatorioBean.usuarioAlterado.endereco.descricao}" />
+						<h:message for="endereco" errorClass="erro" />
+
+
+						<h:outputLabel value="Senha:" for="senha" />
+						<h:inputSecret maxlength="10" label="Campo Senha" id="senha"
+							required="true"
+							requiredMessage="Preenchimento da Senha é obrigatório!"
+							value="#{relatorioBean.usuarioAlterado.senha}" />
+						<h:message for="senha" errorClass="erro" />
+
+						<h:commandButton value="Salvar" actionListener="#{relatorioBean.alterar}">
+							
 						</h:commandButton>
-						
-				</h:panelGrid>
-			</fieldset>
-		</h:form>
-			
-			
-		
-			
-			
-		
+
+						<h:commandButton value="Cancelar/Voltar" immediate="true"
+							action="#{redirecionarPagina.redirecionar}"
+							actionListener="#{relatorioBean.listar}">
+							<f:setPropertyActionListener target="#{redirecionarPagina.local}"
+								value="Select" />
+						</h:commandButton>
+
+					</h:panelGrid>
+				</fieldset>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>

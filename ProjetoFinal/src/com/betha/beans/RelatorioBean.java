@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.betha.beans;
 
 import java.util.ArrayList;
@@ -16,6 +14,7 @@ import org.hibernate.criterion.Order;
 
 
 
+import com.betha.cadastro.Endereco;
 import com.betha.cadastro.Usuario;
 
 import com.betha.util.UsuarioComparar;
@@ -39,6 +38,9 @@ public class RelatorioBean {
 	private ArrayList<Usuario> selecionados;
 	private List<Usuario> usuarioFiltrado;
 	private List<Usuario> todosUsuarios;
+	private Usuario usuarioAlterado;
+	private boolean sexo;
+
 	private boolean sorted;
 	private boolean asc;
 	private boolean itemSelecionado;
@@ -54,23 +56,23 @@ public class RelatorioBean {
 	private boolean anterior=true,proximo=false;
 	private String label="botão desabilitado";
 	private Usuario usuarioSelecionado;
-	private Repositorios repo;
+	private Repositorios repo = new Repositorios();
 	public UsuariosRepo usuarios;
+	public EnderecoRepo enderecos;
+	public Endereco endereco;
 	
 	
+
+
 	public RelatorioBean(){
-		SessionFilter s = new SessionFilter();
-		this.repo = new Repositorios();
-		this.usuarios = repo.getUsuarios();
-		//UserDao ud = new UserDao();
+		
+			
 		this.todosUsuarios = new ArrayList<Usuario>();
 		this.listaUsuario = new ArrayList<Usuario>();
 		this.cont=0;
-		//this.todosUsuarios = ud.selectAll();
-		
 		this.todosUsuarios =  repo.getUsuarios().listar();
-	
 		this.selecionados=new ArrayList<Usuario>();
+	
 	}
 	
 
@@ -78,8 +80,6 @@ public class RelatorioBean {
 		System.out.println("olá");
 		//setMostraBotao(!mostraBotao);
 		//label= mostraBotao ? "botão desabilitado":"botao habilitado";
-		
-		
 		
 	}
 	
@@ -180,8 +180,6 @@ public class RelatorioBean {
 				this.listaUsuario.add(this.todosUsuarios.get(i));
 			}
 		}
-	
-		
 	}
 	
 	public void listaProxima(){
@@ -222,47 +220,70 @@ public class RelatorioBean {
 			//logo, tiro -1 do cont sempre q o usuário insistir em ir p/ o próximo
 			this.cont--; 
 			setProximo(true);
-			
-		}else{
-			
+		}else{	
 			listaProxima();
-			
 		}
-	
 	}
 	
-	public void alterar(Usuario user){
-		
-		if (this.usuarioSelecionado == null || this.usuarioSelecionado != user){
-			this.usuarioSelecionado=user;
-		}else{
-			
-			System.out.println("teste: "+ user.getNome());
-			usuarios.alterar(user);
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Pessoa editada com sucesso!", ""));
-			this.usuarioSelecionado=null;
+	public void alterarCadastro(Usuario user) {
+		sexo=false;
+		if (user.getSexo().equalsIgnoreCase("m")){
+			sexo = true;
 		}
+		this.usuarioAlterado = user;
+	}
+	
+	public void alterar(){
+		
+		
+		if (sexo == true){
+			usuarioAlterado.setSexo("M");
+		}else{
+			usuarioAlterado.setSexo("F");
+		}
+		
+		this.usuarios = repo.getUsuarios();
+		this.enderecos = repo.getEndereco();
+		this.enderecos.alterar(this.usuarioAlterado.getEndereco());
+		
+		usuarios.alterar(usuarioAlterado);
+		FacesContext.getCurrentInstance().addMessage(null,
+			new FacesMessage(FacesMessage.SEVERITY_INFO, "Dados alterados com sucesso!", ""));
+		//this.usuarioAlterado=null;
+		
+	}
+	
+	public void excluir(Usuario user){ 
+		
+		this.repo = new Repositorios();
+		this.usuarios = repo.getUsuarios();
+		
+		this.enderecos = repo.getEndereco();
+		
+		
+		this.usuarios.excluir(user);
+		this.enderecos.excluir(user.getEndereco());
+		this.todosUsuarios = new ArrayList<>();
+		this.todosUsuarios = this.usuarios.listar();
+		listar();
 	}
 	
 	public boolean isAnterior() {
 		return anterior;
 	}
-
-
+	
 	public void setAnterior(boolean anterior) {
 		this.anterior = anterior;
 	}
-
 
 	public boolean isProximo() {
 		return proximo;
 	}
 
-
 	public void setProximo(boolean proximo) {
 		this.proximo = proximo;
 	}
+	
 	public Usuario getUser() {
 		return user;
 	}
@@ -353,17 +374,13 @@ public class RelatorioBean {
 		return excessoNoArray;
 	}
 
-
-
 	public void setExcessoNoArray(boolean excessoNoArray) {
 		this.excessoNoArray = excessoNoArray;
 	}
-
-
+	
 	public String getpaginaFiltro() {
 		return paginaFiltro;
 	}
-
 
 	public void setpaginaFiltro(String paginaFiltro) {
 		this.paginaFiltro = paginaFiltro;
@@ -373,18 +390,31 @@ public class RelatorioBean {
 		return label;
 	}
 
-
 	public void setLabel(String label) {
 		this.label = label;
 	}
+	
 	public Usuario getUsuarioSelecionado() {
 		return usuarioSelecionado;
 	}
 
-
 	public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
 		this.usuarioSelecionado = usuarioSelecionado;
 	}
+	public Usuario getUsuarioAlterado() {
+		return usuarioAlterado;
+	}
+
+	public void setUsuarioAlterado(Usuario usuarioAlterado) {
+		this.usuarioAlterado = usuarioAlterado;
+	}
 	
+	public boolean isSexo() {
+		return sexo;
+	}
+
+	public void setSexo(boolean sexo) {
+		this.sexo = sexo;
+	}
 
 }

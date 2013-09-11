@@ -39,5 +39,14 @@ public class EnderecoHibernate implements EnderecoRepo{
 		return (Endereco)session.get(Endereco.class,codigo);
 		
 	}
+	
+	public void alterar(Endereco endereco) {
+		this.session.merge(endereco);	
+	}
+
+
+	public void excluir(Endereco endereco) {
+		this.session.delete(endereco);
+	}
 
 }

@@ -42,4 +42,11 @@ public class UsuarioHibernate implements UsuariosRepo {
 		this.session.merge(user);
 	}
 
+
+	public void excluir(Usuario user) {
+		
+		this.session.delete(user);
+		
+	}
+
 }

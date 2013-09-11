@@ -115,7 +115,7 @@ public class Usuario {
 	@ManyToOne
 	@JoinColumn(name="endereco") //fk
 	public Endereco getEndereco() {
-		return endereco;
+		return this.endereco;
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;

@@ -4,14 +4,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core">
 	<ui:define name="conteudo">
-		<h:form id="form">
+		<h:form id="form" >
 			<fieldset id="field">
 					<legend>Formulário</legend>
-					<h:panelGrid columns="1">
+					<h:panelGrid columns="1" >
 				
 						<h:outputLabel value="Nome:" for="texto_nome" />
 						<h:inputText maxlength="45" label="Campo Nome" value="#{cadUser.user.nome}" id="texto_nome" required="true"
-						requiredMessage="Preenchimento do nome é obrigatório!"/>
+						requiredMessage="Preenchimento do nome é obrigatório!"  />
+						
 						<h:message for="texto_nome" errorClass="erro"/>
 						
 						<h:outputLabel value="Sexo:"/>

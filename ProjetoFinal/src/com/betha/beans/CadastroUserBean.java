@@ -1,7 +1,12 @@
 package com.betha.beans;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 
 import com.betha.cadastro.Endereco;
@@ -23,37 +28,35 @@ public class CadastroUserBean {
 	private Usuario userSelected;
 	private Endereco endereco;
 	private boolean cadastro;
-	private Repositorios repo;
+	private Repositorios repo = new Repositorios();
 	private UsuariosRepo usuariosHibernate;
 	private EnderecoRepo enderecoHibernate;
 	
 	public CadastroUserBean(){
-		this.repo = new Repositorios();
 		
-		this.usuariosHibernate = repo.getUsuarios();
-		this.enderecoHibernate = repo.getEndereco();
 		this.user=new Usuario();
 		this.userList= new ArrayList<Usuario>();
 		this.endereco = new Endereco();
 		this.user.setEndereco(this.endereco);
-		
-		
 	}
 	
 	public void cadastrar(){
+
+		this.usuariosHibernate = repo.getUsuarios();
+		this.enderecoHibernate = repo.getEndereco();
 		
 		this.enderecoHibernate.insert(this.user.getEndereco());
 		this.usuariosHibernate.insert(this.user); //inserindo o usuário e seu endereço no banco!
-		this.user = new Usuario();		
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro realizado com sucesso!", ""));
+
+		this.user = new Usuario();	
+		this.endereco = new Endereco();
 	}
 	
 	
-	public void excluir(){ /** Método extinto **/
-		//this.userList.remove(this.userSelected);
-		//UserDao ud = new UserDao();
-		//ud.delete(ud.selectOne(this.userSelected));
-		//this.cadastro=false;
-	}
+	
 
 	public Usuario getUser() {
 		return user;

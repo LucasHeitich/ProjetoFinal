@@ -78,26 +78,37 @@
 				<h:outputText value="#{item.telefone}"/>
 			</h:column>
 			
+
+			
+
 			<h:column headerClass="check-column">
 				<f:facet name="header">Endereço</f:facet>
 				<h:outputText value="#{item.endereco.descricao}"/>
 			</h:column>
-			
+
 			<!-- Opção editar -->
+			
+			
 			<h:column headerClass="check-column">
-				<h:commandButton image="#{relatorioBean.usuarioSelecionado eq item ? '/imagens/save.png':'/imagens/updateIcon.jpg'}"
-				 title="#{relatorioBean.usuarioSelecionado eq item?'Salvar este usuário':'Editar este usuário'}">
-					<f:ajax execute="@form" listener="#{relatorioBean.alterar(item)}" render="@form"  />
-				</h:commandButton> 
+				<h:commandButton image="/imagens/updateIcon.jpg" title="Editar este usuário" 
+					action="#{redirecionarPagina.redirecionar}" value="Alterar" >
+				<f:setPropertyActionListener target="#{redirecionarPagina.local}" value="Alterar" />
+				<f:ajax listener="#{relatorioBean.alterarCadastro(item)}" />
+			</h:commandButton>
+			
 			</h:column>
-			<!-- Opção deletar -->
+	 
+			
 			<h:column headerClass="check-column">
 				<h:commandLink  title="Deletar Usuário">
 					<h:graphicImage value="/imagens/deleteIcon.png"/>
-					<f:ajax event="click" onevent="#{window.confirm('Tem certeza que deseja deletar este usuário?')}" />
+					<f:ajax  listener="#{relatorioBean.excluir(item)}" render="@form" />
 				</h:commandLink> 
+				
 			</h:column>
+			
 			</h:dataTable>
+			
 			<!-- Botão anterior -->
 			<h:commandButton value="Anterior" disabled="#{relatorioBean.anterior}" id="anterior">
 				<f:ajax execute="anterior" event="click" listener="#{relatorioBean.back}" render="tabela anterior proximo"/>
@@ -113,11 +124,7 @@
 				<f:ajax execute="proximo" event="click" listener="#{relatorioBean.next}" render="tabela proximo anterior"/>
 			</h:commandButton>
 			
-			
-			
-		
-			
-			
+
 		</h:form>
 	</div>
 	</ui:define>

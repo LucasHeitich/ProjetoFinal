@@ -23,4 +23,8 @@ public interface EnderecoRepo {
 	public Endereco porCodigo(Integer codigo);
 	
 	public void insert(Endereco endereco);
+	
+	public void alterar(Endereco endereco);
+	
+	public void excluir(Endereco endereco);
 }  
