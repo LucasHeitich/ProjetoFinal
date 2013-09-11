@@ -8,9 +8,7 @@ import com.betha.repository.EnderecoRepo;
 import com.betha.repository.UsuariosRepo;
 
 public class Repositorios {
-	
 
-	
 	public UsuariosRepo getUsuarios(){
 		return new UsuarioHibernate(this.getSession());
 	}

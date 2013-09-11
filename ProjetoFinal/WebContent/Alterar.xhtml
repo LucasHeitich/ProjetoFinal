@@ -5,21 +5,17 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:define name="conteudo">
-
-
 		<div class="container" style="margin-top: 30px;">
 			<h:form id="form">
 				<fieldset id="field">
 					<legend>Editar Perfil</legend>
 					<h:panelGrid columns="1">
-
 						<h:outputLabel value="Nome:" for="texto_nome" />
 						<h:inputText maxlength="45" label="Campo Nome" id="texto_nome"
 							required="true"
 							requiredMessage="Preenchimento do nome é obrigatório!"
 							value="#{relatorioBean.usuarioAlterado.nome}" />
 						<h:message for="texto_nome" errorClass="erro" />
-
 						<h:outputLabel value="Sexo:" />
 						
 						<!-- RadioButton -->
@@ -61,10 +57,8 @@
 							value="#{relatorioBean.usuarioAlterado.senha}" />
 						<h:message for="senha" errorClass="erro" />
 
-						<h:commandButton value="Salvar" actionListener="#{relatorioBean.alterar}">
+						<h:commandButton value="Salvar" actionListener="#{relatorioBean.alterar}" />
 							
-						</h:commandButton>
-
 						<h:commandButton value="Cancelar/Voltar" immediate="true"
 							action="#{redirecionarPagina.redirecionar}"
 							actionListener="#{relatorioBean.listar}">

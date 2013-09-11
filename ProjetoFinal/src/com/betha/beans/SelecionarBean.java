@@ -1,12 +1,10 @@
-/**
- * 
- */
 package com.betha.beans;
 
 /**
  * @author Administrador
  *
  */
+
 public class SelecionarBean {
 
 	private boolean selecionado;

@@ -14,39 +14,31 @@ public class EnderecoHibernate implements EnderecoRepo{
 		this.session=session;
 	}
 	
-	
 	public void insert (Endereco endereco){
 		this.session.persist(endereco);
 	}
+	
 	public List<Endereco> listar() {
-		
 		return session.createCriteria(Endereco.class).list();
 	}
-
-
+	
 	public List<Endereco> orderAsc() {
 		return this.session.createCriteria(Usuario.class).addOrder(Order.asc("descricao")).list();
 	}
-
 
 	public List<Endereco> orderDesc() {
 		return this.session.createCriteria(Usuario.class).addOrder(Order.desc("descricao")).list();
 	}
 
-
 	public Endereco porCodigo(Integer codigo) {
-		
-		return (Endereco)session.get(Endereco.class,codigo);
-		
+		return (Endereco)session.get(Endereco.class,codigo);	
 	}
 	
 	public void alterar(Endereco endereco) {
 		this.session.merge(endereco);	
 	}
 
-
 	public void excluir(Endereco endereco) {
 		this.session.delete(endereco);
 	}
-
 }

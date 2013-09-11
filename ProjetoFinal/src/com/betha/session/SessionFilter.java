@@ -17,18 +17,14 @@ import com.betha.util.FabricaSessao;
 @WebFilter(servletNames="Faces Servlet")
 public class SessionFilter implements Filter{
 
-	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
+	
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		Session session =  FabricaSessao.abrirSessao();
 		Transaction transacao = null;
-		
 		try {
 			transacao = session.beginTransaction();
 			request.setAttribute("session", session);
@@ -41,13 +37,9 @@ public class SessionFilter implements Filter{
 		}finally{
 			session.close();
 		}
-		
 	}
 
-	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
 		
 	}
-
 }

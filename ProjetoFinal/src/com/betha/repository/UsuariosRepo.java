@@ -16,7 +16,5 @@ public interface UsuariosRepo {
 	
 	public void alterar(Usuario user);
 	
-	public void excluir(Usuario user);
-	
-	
+	public void excluir(Usuario user);	
 }

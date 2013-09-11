@@ -5,6 +5,7 @@ package com.betha.beans;
  * @author Administrador
  *
  */
+
 public class RedirecionarPaginaBean {
 	
 	private String local;

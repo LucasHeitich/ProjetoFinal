@@ -11,12 +11,37 @@ xmlns:f="http://java.sun.com/jsf/core">
 <title>Web Project Copyright</title>
 
 
+<script type="text/javascript">
+function UR_Start() 
+{
+	UR_Nu = new Date;
+	UR_Indhold = showFilled(UR_Nu.getHours()) + ":" + showFilled(UR_Nu.getMinutes()) + ":" + showFilled(UR_Nu.getSeconds());
+	document.getElementById("hora").innerHTML = UR_Indhold;
+	setTimeout("UR_Start()",1000);
+}
+function showFilled(Value) 
+{
+	return (Value > 9) ? "" + Value : "0" + Value;
+}
+
+</script>
+
 </h:head>
-<h:body>
+
+
+
+
+
+
+<h:body onload="UR_Start()">
 
 	<div class="header">
 		<ui:insert name="cabecalho">
+
 			
+
+		<font id="hora"/>
+
 			<ui:include src="/templates/Header.xhtml"/>
 		</ui:insert>
 	</div>

@@ -1,7 +1,5 @@
 package com.betha.beans;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,7 @@ import com.betha.util.Repositorios;
 /**
  * @author Administrador
 */
+
 public class CadastroUserBean {
 	
 	private Usuario user;
@@ -33,7 +32,6 @@ public class CadastroUserBean {
 	private EnderecoRepo enderecoHibernate;
 	
 	public CadastroUserBean(){
-		
 		this.user=new Usuario();
 		this.userList= new ArrayList<Usuario>();
 		this.endereco = new Endereco();
@@ -41,23 +39,17 @@ public class CadastroUserBean {
 	}
 	
 	public void cadastrar(){
-
 		this.usuariosHibernate = repo.getUsuarios();
 		this.enderecoHibernate = repo.getEndereco();
-		
 		this.enderecoHibernate.insert(this.user.getEndereco());
 		this.usuariosHibernate.insert(this.user); //inserindo o usuário e seu endereço no banco!
-
-		FacesContext.getCurrentInstance().addMessage(null,
+			FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro realizado com sucesso!", ""));
-
 		this.user = new Usuario();	
 		this.endereco = new Endereco();
+		this.user.setEndereco(this.endereco);
 	}
 	
-	
-	
-
 	public Usuario getUser() {
 		return user;
 	}

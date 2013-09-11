@@ -1,30 +1,16 @@
-
 package com.betha.beans;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
-
-
-
-
 import com.betha.cadastro.Endereco;
 import com.betha.cadastro.Usuario;
-
 import com.betha.util.UsuarioComparar;
 import com.betha.repository.EnderecoRepo;
 import com.betha.repository.UsuariosRepo;
-import com.betha.session.SessionFilter;
-import com.betha.util.FabricaSessao;
-import com.betha.util.FacesUtil;
 import com.betha.util.Repositorios;
-
 
 /**
  * @author Administrador
@@ -33,14 +19,12 @@ import com.betha.util.Repositorios;
 
 public class RelatorioBean {
 	
-	
 	private List<Usuario> listaUsuario = new ArrayList<Usuario>();
 	private ArrayList<Usuario> selecionados;
 	private List<Usuario> usuarioFiltrado;
 	private List<Usuario> todosUsuarios;
 	private Usuario usuarioAlterado;
 	private boolean sexo;
-
 	private boolean sorted;
 	private boolean asc;
 	private boolean itemSelecionado;
@@ -61,26 +45,12 @@ public class RelatorioBean {
 	public EnderecoRepo enderecos;
 	public Endereco endereco;
 	
-	
-
-
-	public RelatorioBean(){
-		
-			
+	public RelatorioBean(){	
 		this.todosUsuarios = new ArrayList<Usuario>();
 		this.listaUsuario = new ArrayList<Usuario>();
 		this.cont=0;
 		this.todosUsuarios =  repo.getUsuarios().listar();
 		this.selecionados=new ArrayList<Usuario>();
-	
-	}
-	
-
-	public void addTeste(){
-		System.out.println("olá");
-		//setMostraBotao(!mostraBotao);
-		//label= mostraBotao ? "botão desabilitado":"botao habilitado";
-		
 	}
 	
 	public void irPagina(){
@@ -93,20 +63,18 @@ public class RelatorioBean {
 				break;
 			}
 		}
-		
 		if (verificaNum){
 			int pag = Integer.parseInt(paginaFiltro);
 			if (pag>numeroDePagina){
 			//se a página que solicitar for inexistente
 				cont=0;
 			}else{
-			
 				cont=pag;
 				listaProxima();
-			
 			}
 		}
 	}
+	
 	public void listar(){
 		this.listaUsuario = new ArrayList<Usuario>();
 		numeroDePagina=todosUsuarios.size()/10; //número de página
@@ -117,16 +85,13 @@ public class RelatorioBean {
 				this.listaUsuario.add(this.todosUsuarios.get(i));
 			}
 		}else{
-			
 			for (int i=0;i<10;i++){
 				this.listaUsuario.add(this.todosUsuarios.get(i));
 			}
 		}
-		
-		cont=0;
-		
-	
+		cont=0;	
 	}
+	
 	public void marcaTodos(){
 		for (int i=0; i<this.listaUsuario.size(); i++){
 			//this.listaUsuario.get(i).setSelecionado(this.itemSelecionado);
@@ -134,45 +99,36 @@ public class RelatorioBean {
 	}
 
 	public void sort(){
-		
 		this.setSorted(true);
 		this.setAsc(!this.asc);
-		
 		if (this.filtro != null && filtro.length()>0){
 			Collections.sort((ArrayList)this.usuarioFiltrado, new UsuarioComparar(this.asc));
 		}else{
 			Collections.sort((ArrayList)this.listaUsuario, new UsuarioComparar(this.asc));
 		}
-
 	}
 	
 	public void buscarFiltro(){
 		this.usuarioFiltrado = new ArrayList<Usuario>();
-		
 		for (int i = 0; i < this.todosUsuarios.size(); i++) {
 			if(this.todosUsuarios.get(i).getNome().toLowerCase().contains(this.filtro.toLowerCase())
 					||this.todosUsuarios.get(i).getEmail().toLowerCase().contains(this.filtro.toLowerCase())
 					||Integer.toString(this.todosUsuarios.get(i).getCodigo()).equals(this.filtro)){
-				this.usuarioFiltrado.add(this.todosUsuarios.get(i));
-					
+				this.usuarioFiltrado.add(this.todosUsuarios.get(i));	
 			}
-			
 		}
 	}
+	
 	public void back(){
-		
-		if (cont>0){
-			
+		if (cont>0){	
 			setAnterior(false);
 			setProximo(false);
 			this.cont--;	
 			this.listaUsuario = new ArrayList<Usuario>();
 			for (int i = 10*cont; i<cont*10+10;i++){
 				this.listaUsuario.add(this.todosUsuarios.get(i));
-			}
-			
-		}else{
-			
+			}	
+		}else{	
 			setAnterior(true);
 			this.cont=0;
 			this.listaUsuario = new ArrayList<Usuario>();
@@ -203,7 +159,6 @@ public class RelatorioBean {
 		
 	}
 	public void next(){
-		
 		/*Exemplo de um array de tamanho 44:
 		 	tamanho do array/10: 4.4
 		  	cont 0 = 1 ao 10
@@ -214,7 +169,6 @@ public class RelatorioBean {
 			cont 5 = excesso no array! Paro por aqui! :-)
 		*/
 		this.cont++;
-		
 		//se não tiver mais o que mostrar, significa que o cont é >= ao resultado do tamanho do array/10 
 		if (cont >= ((double)this.todosUsuarios.size()/10)){ //maior ou igual pq ele passa 1x menos aqui.
 			//logo, tiro -1 do cont sempre q o usuário insistir em ir p/ o próximo
@@ -234,33 +188,24 @@ public class RelatorioBean {
 	}
 	
 	public void alterar(){
-		
-		
 		if (sexo == true){
 			usuarioAlterado.setSexo("M");
 		}else{
 			usuarioAlterado.setSexo("F");
 		}
-		
 		this.usuarios = repo.getUsuarios();
 		this.enderecos = repo.getEndereco();
 		this.enderecos.alterar(this.usuarioAlterado.getEndereco());
-		
 		usuarios.alterar(usuarioAlterado);
 		FacesContext.getCurrentInstance().addMessage(null,
 			new FacesMessage(FacesMessage.SEVERITY_INFO, "Dados alterados com sucesso!", ""));
 		//this.usuarioAlterado=null;
-		
 	}
 	
 	public void excluir(Usuario user){ 
-		
 		this.repo = new Repositorios();
 		this.usuarios = repo.getUsuarios();
-		
-		this.enderecos = repo.getEndereco();
-		
-		
+		this.enderecos = repo.getEndereco();		
 		this.usuarios.excluir(user);
 		this.enderecos.excluir(user.getEndereco());
 		this.todosUsuarios = new ArrayList<>();
@@ -307,9 +252,11 @@ public class RelatorioBean {
 	public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
 		this.listaUsuario = listaUsuario;
 	}
+	
 	public ArrayList<Usuario> getSelecionados() {
 		return selecionados;
 	}
+	
 	public void setSelecionados(ArrayList<Usuario> selecionados) {
 		this.selecionados = selecionados;
 	}
@@ -416,5 +363,4 @@ public class RelatorioBean {
 	public void setSexo(boolean sexo) {
 		this.sexo = sexo;
 	}
-
 }
