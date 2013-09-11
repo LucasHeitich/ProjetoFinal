@@ -44,7 +44,6 @@ public class UsuarioHibernate implements UsuariosRepo {
 
 
 	public void excluir(Usuario user) {
-		
 		this.session.delete(user);
 		
 	}
