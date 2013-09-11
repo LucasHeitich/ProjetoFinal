@@ -4,44 +4,15 @@ xmlns:h="http://java.sun.com/jsf/html"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:f="http://java.sun.com/jsf/core">
 
+
+
 	<ui:define name="conteudo">
+	
 		<div class="content">
 			<h1 align="center"> Bem Vindo ao 
 				<span style="color:#DEDEDE;">Web Project! </span>
 			</h1>
 			
-			<h:form>
-				<fieldset>
-					
-				<h:panelGrid>
-						<!-- Salário -->
-						<h:outputLabel value="Salário:" for="salario-texto"/>
-						<h:inputText id="salario-texto" required="true" requiredMessage="Preenchimento do Salário é obrigatório!">
-							<f:convertNumber integerOnly="true" />
-						</h:inputText>
-						<h:message for="salario-texto" errorClass="erro"/>
-						<!-- Data Admissão -->
-						<h:outputLabel value="Data de Admissão:" for="dataA-texto"/>
-						<h:inputText id="dataA-texto" required="true" requiredMessage="Preenchimento da Data de Admissão é obrigatório!">
-							<f:convertNumber integerOnly="true" />
-						</h:inputText>
-						<h:message for="dataA-texto" errorClass="erro"/>
-						<!-- Data Demissão -->
-						<h:outputLabel value="Data de Demissão:" for="dataD-texto"/>
-						<h:inputText id="dataD-texto" required="true" requiredMessage="Preenchimento da Data de Demissão é obrigatório!">
-							<f:convertNumber integerOnly="true" />
-						</h:inputText>
-						<h:message for="dataD-texto" errorClass="erro"/>
-						
-						
-						<h:commandButton value="Calcular" action="#{cadUser.cadastrar}"/>
-				
-					
-				
-				</h:panelGrid>
-			</fieldset>
-			
-			</h:form>
 		</div>
 		
 		<div class="banner-1">
