@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
+import org.apache.tomcat.util.digester.SetPropertiesRule;
+
 import com.betha.cadastro.Endereco;
 import com.betha.cadastro.Usuario;
 import com.betha.util.UsuarioComparar;
@@ -23,6 +26,20 @@ public class RelatorioBean {
 	private ArrayList<Usuario> selecionados;
 	private List<Usuario> usuarioFiltrado;
 	private List<Usuario> todosUsuarios;
+	/**
+	 * @return the todosUsuarios
+	 */
+	public List<Usuario> getTodosUsuarios() {
+		return todosUsuarios;
+	}
+
+	/**
+	 * @param todosUsuarios the todosUsuarios to set
+	 */
+	public void setTodosUsuarios(List<Usuario> todosUsuarios) {
+		this.todosUsuarios = todosUsuarios;
+	}
+
 	private Usuario usuarioAlterado;
 	private boolean sexo;
 	private boolean sorted;
@@ -44,17 +61,23 @@ public class RelatorioBean {
 	public UsuariosRepo usuarios;
 	public EnderecoRepo enderecos;
 	public Endereco endereco;
-	
+	public boolean ultimaPagina=false;
 	public RelatorioBean(){	
 		this.todosUsuarios = new ArrayList<Usuario>();
 		this.listaUsuario = new ArrayList<Usuario>();
 		this.cont=0;
-		this.todosUsuarios =  repo.getUsuarios().listar();
+		//this.todosUsuarios =  repo.getUsuarios().listar();
 		this.selecionados=new ArrayList<Usuario>();
+		System.out.println("nao funfa pq essa bosta?");
+		
 	}
 	
 	public void irPagina(){
 		boolean verificaNum = false;
+		if (paginaFiltro.equalsIgnoreCase("u")){
+			ultimaPagina=true;
+			listar();
+		}else{
 		for (int i=0; i<paginaFiltro.length();i++){
 			if (Character.isDigit(paginaFiltro.charAt(i))){
 				verificaNum=true;
@@ -74,10 +97,35 @@ public class RelatorioBean {
 			}
 		}
 	}
+		}
 	
 	public void listar(){
+		this.todosUsuarios =  repo.getUsuarios().listar();
+		
+		setAnterior(false);
+		setProximo(false);
 		this.listaUsuario = new ArrayList<Usuario>();
 		numeroDePagina=todosUsuarios.size()/10; //número de página
+		
+		if (ultimaPagina && this.todosUsuarios.size()>10){
+			this.listaUsuario = new ArrayList<>();
+			if (todosUsuarios.size() % 10 == 0){
+				for (int i=todosUsuarios.size()-10; i<todosUsuarios.size();i++){
+					this.listaUsuario.add(this.todosUsuarios.get(i));
+				}
+				cont=todosUsuarios.size()-10;
+				setProximo(true);
+				setAnterior(false);
+			}else{
+				setProximo(true); //desabilito o botão
+				setAnterior(false); //habilito pra voltar
+				for (int i = this.todosUsuarios.size()-(this.todosUsuarios.size() % 10); i<this.todosUsuarios.size();i++){ 
+					this.listaUsuario.add(this.todosUsuarios.get(i));
+				}
+				cont=this.todosUsuarios.size() % 10+9;
+				ultimaPagina=false;
+			}
+		}else{
 		if (todosUsuarios.size()<10){
 			setAnterior(true);
 			setProximo(true);
@@ -90,6 +138,8 @@ public class RelatorioBean {
 			}
 		}
 		cont=0;	
+		}
+		System.out.println(cont);
 	}
 	
 	public void marcaTodos(){
@@ -110,10 +160,13 @@ public class RelatorioBean {
 	
 	public void buscarFiltro(){
 		this.usuarioFiltrado = new ArrayList<Usuario>();
+		
 		for (int i = 0; i < this.todosUsuarios.size(); i++) {
 			if(this.todosUsuarios.get(i).getNome().toLowerCase().contains(this.filtro.toLowerCase())
 					||this.todosUsuarios.get(i).getEmail().toLowerCase().contains(this.filtro.toLowerCase())
-					||Integer.toString(this.todosUsuarios.get(i).getCodigo()).equals(this.filtro)){
+					||Integer.toString(this.todosUsuarios.get(i).getCodigo()).equals(this.filtro)
+					||this.todosUsuarios.get(i).getEndereco().getDescricao().toLowerCase().contains(this.filtro.toLowerCase())
+					|| this.todosUsuarios.get(i).getTelefone().toLowerCase().contains(this.filtro.toLowerCase())){
 				this.usuarioFiltrado.add(this.todosUsuarios.get(i));	
 			}
 		}
@@ -121,6 +174,7 @@ public class RelatorioBean {
 	
 	public void back(){
 		if (cont>0){	
+			
 			setAnterior(false);
 			setProximo(false);
 			this.cont--;	
@@ -129,6 +183,7 @@ public class RelatorioBean {
 				this.listaUsuario.add(this.todosUsuarios.get(i));
 			}	
 		}else{	
+			
 			setAnterior(true);
 			this.cont=0;
 			this.listaUsuario = new ArrayList<Usuario>();

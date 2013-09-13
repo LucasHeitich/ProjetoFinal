@@ -48,6 +48,9 @@ public class CadastroUserBean {
 		this.user = new Usuario();	
 		this.endereco = new Endereco();
 		this.user.setEndereco(this.endereco);
+		new RelatorioBean();
+
+		
 	}
 	
 	public Usuario getUser() {
